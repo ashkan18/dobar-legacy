@@ -1,0 +1,33 @@
+<h2>Show place</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @place.name %>
+  </li>
+
+  <li>
+    <strong>Short description:</strong>
+    <%= @place.short_description %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @place.description %>
+  </li>
+
+  <li>
+    <strong>Go:</strong>
+    <%= @place.go %>
+  </li>
+
+  <li>
+    <strong>Nogo:</strong>
+    <%= @place.nogo %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: place_path(@conn, :edit, @place) %>
+<%= link "Back", to: place_path(@conn, :index) %>

@@ -39,4 +39,5 @@ config :dobar, Dobar.Repo,
   password: "postgres",
   database: "dobar_dev",
   hostname: "localhost",
-  pool_size: 10
+  pool_size: 10,
+  extensions: [{Geo.PostGIS.Extension, library: Geo}]

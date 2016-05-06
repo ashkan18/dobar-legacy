@@ -38,6 +38,7 @@ defmodule Dobar.Mixfile do
      {:gettext, "~> 0.9"},
      {:guardian, "~>0.6.0"},
      {:comeonin, "~> 2.0"},
+     {:geo, "~> 1.0"},
      {:cowboy, "~> 1.0"}]
   end
 

@@ -20,6 +20,7 @@ defmodule Dobar.Router do
 
     get "/", PageController, :index
     resources "/users", UserController
+    resources "/places", PlaceController
     resources "/registrations", RegistrationController, only: [:new, :create]
   end
 

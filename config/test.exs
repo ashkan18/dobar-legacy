@@ -16,4 +16,5 @@ config :dobar, Dobar.Repo,
   password: "postgres",
   database: "dobar_test",
   hostname: "localhost",
-  pool: Ecto.Adapters.SQL.Sandbox
+  pool: Ecto.Adapters.SQL.Sandbox,	
+  extensions: [{Geo.PostGIS.Extension, library: Geo}]
