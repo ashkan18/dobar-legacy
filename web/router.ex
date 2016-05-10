@@ -18,10 +18,13 @@ defmodule Dobar.Router do
   scope "/", Dobar do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
-    resources "/users", UserController
-    resources "/places", PlaceController
     resources "/registrations", RegistrationController, only: [:new, :create]
+    
+    scope "admin/" do
+      get "/", PageController, :index
+      resources "/users", UserController
+      resources "/places", PlaceController
+    end
   end
 
   scope "/api", Dobar.Api, as: :api do
@@ -31,6 +34,7 @@ defmodule Dobar.Router do
       resources "/reviews", ReviewController
       resources "/users",   UserController
       resources "/places",  PlaceController
+      resources "/user_place_reviews", UserPlaceReviewController, only: [:create]
       post "/sessions", SessionController, :login
     end
   end

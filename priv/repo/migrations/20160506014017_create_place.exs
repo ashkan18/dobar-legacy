@@ -7,8 +7,14 @@ defmodule Dobar.Repo.Migrations.CreatePlace do
       add :short_description, :string
       add :description, :string
       add :geom, :geometry
-      add :go, :integer
-      add :nogo, :integer
+      add :address, :string
+      add :address2, :string
+      add :city, :string
+      add :state, :string
+      add :country, :string
+      add :postal_code, :string
+      add :go, :integer, defult: 0
+      add :nogo, :integer, default: 0
 
       timestamps
     end

@@ -2,3 +2,7 @@ curl -H "Content-Type: application/json" -X POST http://localhost:4000/api/v1/se
 
 
 curl -H "Content-Type: application/json" -X GET http://localhost:4000/api/v1/users -H "Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyOjQiLCJwZW0iOnt9LCJqdGkiOiJkYjgyOGM5Ni0wYjY4LTQzZmYtYjljYy0zODllMmY4NWRhNzciLCJpc3MiOiJEb2JhciIsImlhdCI6MTQ2MjQ0OTEyOSwiZXhwIjoxNDY1MDQxMTI5LCJhdWQiOiJ0b2tlbiJ9.LeNmQrIKoEF6ccqn-NXTtkoS5zXluItrrajaBwufDi4"
+
+curl -H "Content-Type: application/json" -H "Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyOjEiLCJwZW0iOnt9LCJqdGkiOiI5MWEzZmZlYi1jM2YyLTRjY2ItYWUzZi0zYTZkZjU0MzJjMDQiLCJpc3MiOiJEb2JhciIsImlhdCI6MTQ2MjY2NTQxNCwiZXhwIjoxNDY1MjU3NDE0LCJhdWQiOiJ0b2tlbiJ9.y8DqFm37pO5FGLgBgftno5uCCUdPF1DzQDQFsN_Kydw" -X GET "http://localhost:4000/api/v1/places?lat=34&lon=-72"
+
+curl -H "Content-Type: application/json" -H "Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyOjEiLCJwZW0iOnt9LCJqdGkiOiJmNDg4Y2FkNC1mNjU2LTQ3MWYtYmQ3YS0xZTc0MjgxOWVkM2MiLCJpc3MiOiJEb2JhciIsImlhdCI6MTQ2Mjg0MjIzOCwiZXhwIjoxNDY1NDM0MjM4LCJhdWQiOiJ0b2tlbiJ9.YAwAfk5l9vbm5LaMcPIFxONfAELAnRVKtxiHxAzoFqw" -X POST "http://localhost:4000/api/v1/user_place_reviews" -d '{"user_id": 1, "place_id": 1, "go": false, "comment": "not much"}'

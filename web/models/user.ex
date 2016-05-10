@@ -8,6 +8,9 @@ defmodule Dobar.User do
     field :crypted_password, :string
     field :password, :string, virtual: true
 
+    has_many :user_place_reviews, Dobar.UserPlaceReview
+    has_many :reviewed_places, through: [:user_place_reviews, :place]
+
     timestamps
   end
 
