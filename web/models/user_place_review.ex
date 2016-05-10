@@ -3,7 +3,7 @@ defmodule Dobar.UserPlaceReview do
 
   @derive {Poison.Encoder, only: [:go, :comment]}
   
-  schema "user_place_reivews" do
+  schema "user_place_reviews" do
     field :go, :boolean, default: false
     field :comment, :string
     belongs_to :user, Dobar.User
@@ -24,5 +24,8 @@ defmodule Dobar.UserPlaceReview do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> foreign_key_constraint(:user_id)
+    |> foreign_key_constraint(:place_id)
+    |> unique_constraint(:user_id_place_id)
   end
 end

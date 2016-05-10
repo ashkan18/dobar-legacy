@@ -36,6 +36,7 @@ defmodule Dobar.Router do
       resources "/places",  PlaceController
       resources "/user_place_reviews", UserPlaceReviewController, only: [:create]
       post "/sessions", SessionController, :login
+      delete "/sessions", SessionController, :logout
     end
   end
 
