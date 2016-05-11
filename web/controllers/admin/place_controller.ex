@@ -1,8 +1,10 @@
 import IEx
-defmodule Dobar.PlaceController do
+defmodule Dobar.Admin.PlaceController do
   use Dobar.Web, :controller
 
   alias Dobar.Place
+
+  plug Guardian.Plug.EnsureAuthenticated, %{ on_failure: { Dobar.Api.V1.SessionController, :permission_denied } }
 
   plug :scrub_params, "place" when action in [:create, :update]
 

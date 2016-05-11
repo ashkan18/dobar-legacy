@@ -7,6 +7,7 @@ defmodule Dobar.User do
     field :email, :string
     field :crypted_password, :string
     field :password, :string, virtual: true
+    field :is_admin, :boolean
 
     has_many :user_place_reviews, Dobar.UserPlaceReview
     has_many :reviewed_places, through: [:user_place_reviews, :place]
@@ -15,7 +16,7 @@ defmodule Dobar.User do
   end
 
   @required_fields ~w(name email password)
-  @optional_fields ~w()
+  @optional_fields ~w(is_admin)
 
   @doc """
   Creates a changeset based on the `model` and `params`.

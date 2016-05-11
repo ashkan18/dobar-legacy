@@ -1,4 +1,4 @@
-defmodule Dobar.UserController do
+defmodule Dobar.Admin.UserController do
   use Dobar.Web, :controller
 
   alias Dobar.User
