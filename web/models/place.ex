@@ -22,6 +22,9 @@ defmodule Dobar.Place do
     has_many :user_place_reviews, Dobar.UserPlaceReview
     has_many :user_reviews, through: [:user_place_reviews, :user]
 
+    has_many :place_categories, Dobar.PlaceCategory
+    has_many :categories, through: [:place_categories, :category]
+
     timestamps
   end
 

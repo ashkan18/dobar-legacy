@@ -7,6 +7,6 @@ defmodule Dobar.Repo.Migrations.CreateCategory do
 
       timestamps
     end
-
+    create index(:categories, [:name], unique: true)
   end
 end

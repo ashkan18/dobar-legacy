@@ -1,4 +1,3 @@
-import IEx
 defmodule Dobar.Admin.PlaceController do
   use Dobar.Web, :controller
 

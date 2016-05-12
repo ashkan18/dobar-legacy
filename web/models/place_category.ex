@@ -1,13 +1,14 @@
-defmodule Dobar.Category do
+defmodule Dobar.PlaceCategory do
   use Dobar.Web, :model
 
-  schema "categories" do
-    field :name, :string
+  schema "place_categories" do
+    belongs_to :place, Dobar.Place
+    belongs_to :category, Dobar.Category
 
     timestamps
   end
 
-  @required_fields ~w(name)
+  @required_fields ~w(place_id category_id)
   @optional_fields ~w()
 
   @doc """
@@ -19,6 +20,8 @@ defmodule Dobar.Category do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
-    |> unique_constraint(:name)
+    |> foreign_key_constraint(:category_id)
+    |> foreign_key_constraint(:place_id)
+    |> unique_constraint(:place_id_category_id)
   end
 end
