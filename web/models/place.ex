@@ -2,6 +2,7 @@ import Geo.PostGIS
 defmodule Dobar.Place do
   use Dobar.Web, :model
   import Ecto.Query
+  alias Dobar.Category
 
   @derive {Poison.Encoder, only: [:id, :name, :short_description, :description, :geom, :address, :address2, :city, :state, :country, :go, :nogo, :user_place_reviews]}
   
@@ -22,14 +23,12 @@ defmodule Dobar.Place do
     has_many :user_place_reviews, Dobar.UserPlaceReview
     has_many :user_reviews, through: [:user_place_reviews, :user]
 
-    has_many :place_categories, Dobar.PlaceCategory
-    has_many :categories, through: [:place_categories, :category]
-
+    embeds_many :categories, Dobar.Category
     timestamps
   end
 
   @required_fields ~w(name short_description geom address address2 city state country)
-  @optional_fields ~w(description go nogo)
+  @optional_fields ~w(description go nogo categories)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -43,8 +42,10 @@ defmodule Dobar.Place do
       {lon, params } = Dict.pop(params, "lon")
       params = Dict.put_new(params, "geom", %Geo.Point{ coordinates: { lat, lon }, srid: 4326 })
     end
+
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> cast_embed(:categories)
   end
 
   def within_distance(query, lat, lon, distance \\ 1) do

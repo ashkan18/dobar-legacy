@@ -1,6 +1,8 @@
 <h2>Edit place</h2>
 
 <%= render "form.html", changeset: @changeset,
-                        action: place_path(@conn, :update, @place) %>
+                        action: place_path(@conn, :update, @place),
+                        place: @place,
+                        categories: @categories %>
 
 <%= link "Back", to: place_path(@conn, :index) %>
