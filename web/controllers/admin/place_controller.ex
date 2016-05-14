@@ -1,7 +1,9 @@
+require IEx
 defmodule Dobar.Admin.PlaceController do
   use Dobar.Web, :controller
 
   alias Dobar.Place
+  alias Dobar.Category
 
   plug Guardian.Plug.EnsureAuthenticated, %{ on_failure: { Dobar.Api.V1.SessionController, :permission_denied } }
 
@@ -14,18 +16,26 @@ defmodule Dobar.Admin.PlaceController do
 
   def new(conn, _params) do
     changeset = Place.changeset(%Place{})
-    render(conn, "new.html", changeset: changeset)
+    conn
+      |> assign(:changeset, changeset)
+      |> assign(:categories, Repo.all(Category))
+      |> render("new.html")
   end
 
   def create(conn, %{"place" => place_params}) do
+    # format categories to include name tag
+    categories = Dict.get(place_params, "categories")
+                  |> Enum.map(fn c -> %{name: c} end)
+    place_params = Dict.merge(place_params, %{"categories" => categories})
+    
     changeset = Place.changeset(%Place{}, place_params)
     case Repo.insert(changeset) do
       {:ok, _place} ->
         conn
-        |> put_flash(:info, "Place created successfully.")
-        |> redirect(to: place_path(conn, :index))
+          |> put_flash(:info, "Place created successfully.")
+          |> redirect(to: place_path(conn, :index))
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        render(conn, "new.html", changeset: changeset, categories: Repo.all(Category))
     end
   end
 
@@ -37,7 +47,7 @@ defmodule Dobar.Admin.PlaceController do
   def edit(conn, %{"id" => id}) do
     place = Repo.get!(Place, id)
     changeset = Place.changeset(place)
-    render(conn, "edit.html", place: place, changeset: changeset)
+    render(conn, "edit.html", place: place, changeset: changeset, categories: Repo.all(Category))
   end
 
   def update(conn, %{"id" => id, "place" => place_params}) do
@@ -50,7 +60,7 @@ defmodule Dobar.Admin.PlaceController do
         |> put_flash(:info, "Place updated successfully.")
         |> redirect(to: place_path(conn, :show, place))
       {:error, changeset} ->
-        render(conn, "edit.html", place: place, changeset: changeset)
+        render(conn, "edit.html", place: place, changeset: changeset, categories: Repo.all(Category))
     end
   end
 
