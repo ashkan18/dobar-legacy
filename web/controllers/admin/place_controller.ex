@@ -5,7 +5,7 @@ defmodule Dobar.Admin.PlaceController do
   alias Dobar.Place
   alias Dobar.Category
 
-  plug Guardian.Plug.EnsureAuthenticated, %{ on_failure: { Dobar.Api.V1.SessionController, :permission_denied } }
+  plug Guardian.Plug.EnsureAuthenticated, %{ on_failure: { Dobar.AuthenticationController, :permission_denied } }
 
   plug :scrub_params, "place" when action in [:create, :update]
 
@@ -23,12 +23,7 @@ defmodule Dobar.Admin.PlaceController do
   end
 
   def create(conn, %{"place" => place_params}) do
-    # format categories to include name tag
-    categories = Dict.get(place_params, "categories")
-                  |> Enum.map(fn c -> %{name: c} end)
-    place_params = Dict.merge(place_params, %{"categories" => categories})
-    
-    changeset = Place.changeset(%Place{}, place_params)
+    changeset = Place.changeset(%Place{}, prepare_params(place_params))
     case Repo.insert(changeset) do
       {:ok, _place} ->
         conn
@@ -52,7 +47,7 @@ defmodule Dobar.Admin.PlaceController do
 
   def update(conn, %{"id" => id, "place" => place_params}) do
     place = Repo.get!(Place, id)
-    changeset = Place.changeset(place, place_params)
+    changeset = Place.changeset(place, prepare_params(place_params))
 
     case Repo.update(changeset) do
       {:ok, place} ->
@@ -74,5 +69,17 @@ defmodule Dobar.Admin.PlaceController do
     conn
     |> put_flash(:info, "Place deleted successfully.")
     |> redirect(to: place_path(conn, :index))
+  end
+
+  defp prepare_params(place_params) do
+    # format categories to include name tag
+    categories = Dict.get(place_params, "categories")
+                  |> Enum.map(fn c -> %{name: c} end)
+    if place_params !== :empty && Map.has_key?(place_params, "lat_lon")do
+      {lat_lon, place_params} = Dict.pop(place_params, "lat_lon")
+      [lat, lon] = String.split(lat_lon, ",")
+      place_params = Dict.merge(place_params, %{"lat" => lat, "lon" => lon})
+    end
+    Dict.merge(place_params, %{"categories" => categories})
   end
 end

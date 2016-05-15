@@ -1,3 +1,4 @@
+require IEx
 defmodule Dobar.AuthenticationController do
   use Dobar.Web, :controller
 
@@ -23,6 +24,12 @@ defmodule Dobar.AuthenticationController do
 
   def logout(conn, _params) do
     Guardian.Plug.logout(conn)
+      |> redirect(to: "/")
+  end
+
+  def permission_denied(conn, _params) do
+    conn
+      |> put_status(403)
       |> redirect(to: "/")
   end
 

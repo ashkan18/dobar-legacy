@@ -2,7 +2,7 @@ import Geo.PostGIS
 defmodule Dobar.Place do
   use Dobar.Web, :model
   import Ecto.Query
-  alias Dobar.Category
+  alias Dobar.{Category, UserPlaceReview}
 
   @derive {Poison.Encoder, only: [:id, :name, :short_description, :description, :geom, :address, :address2, :city, :state, :country, :go, :nogo, :user_place_reviews]}
   
@@ -19,16 +19,20 @@ defmodule Dobar.Place do
     field :postal_code, :string
     field :go, :integer, default: 0
     field :nogo, :integer, default: 0
+    field :type, :string, default: "restaurant"
+    field :phone, :string
+    field :working_hours, :string
 
-    has_many :user_place_reviews, Dobar.UserPlaceReview
+    has_many :user_place_reviews, UserPlaceReview
     has_many :user_reviews, through: [:user_place_reviews, :user]
 
-    embeds_many :categories, Dobar.Category
+    embeds_many :categories, Category, on_replace: :delete
     timestamps
   end
 
-  @required_fields ~w(name short_description geom address address2 city state country)
-  @optional_fields ~w(description go nogo categories)
+  @place_types ~w(restaurant cafe)
+  @required_fields ~w(name type short_description geom address address2 city state country)
+  @optional_fields ~w(description go nogo categories phone working_hours)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -45,6 +49,7 @@ defmodule Dobar.Place do
 
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> validate_inclusion(:type, @place_types)
     |> cast_embed(:categories)
   end
 

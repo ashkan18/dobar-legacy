@@ -12,22 +12,41 @@
   </div>
 
   <div class="form-group">
+    <%= label f, :type, class: "control-label" %></br>
+    <%= for type <- ["restaurant", "cafe"] do %>
+      <%= radio_button(f, :type, type, checked: (if assigns[:place] && @place.type === type, do: "checked", else: nil)) %>
+      <%= label :type, String.to_atom(type), Gettext.gettext(Dobar.Gettext, type), class: "control-label" %></br>
+    <%  end %>
+  </div>
+
+  <div class="form-group">
     <%= label f, :short_description, class: "control-label" %>
     <%= text_input f, :short_description, class: "form-control" %>
     <%= error_tag f, :short_description %>
-  </div>
-
-
-  <div class="form-group">
-    <%= label f, :categories, class: "control-label" %>
-    <%= multiple_select(f, :categories, Enum.map(@categories, fn c -> c.name end),
-                          selected: (if assigns[:place], do: Enum.map(@place.categories, & &1.name), else: [])) %>
   </div>
 
   <div class="form-group">
     <%= label f, :description, class: "control-label" %>
     <%= text_input f, :description, class: "form-control" %>
     <%= error_tag f, :description %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :phone, class: "control-label" %>
+    <%= telephone_input f, :phone, class: "form-control" %>
+    <%= error_tag f, :phone %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :working_hours, class: "control-label" %>
+    <%= telephone_input f, :working_hours, class: "form-control" %>
+    <%= error_tag f, :working_hours %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :categories, class: "control-label" %>
+    <%= multiple_select(f, :categories, Enum.map(@categories, fn c -> c.name end),
+                          selected: (if assigns[:place], do: Enum.map(@place.categories, & &1.name), else: [])) %>
   </div>
 
   <div class="form-group">
@@ -67,14 +86,9 @@
   </div>
 
   <div class="form-group">
-    <%= label f, :lat, class: "control-label" %>
-    <%= number_input f, :lat, class: "form-control" %>
-    <%= error_tag f, :lat %>
-  </div>
-  <div class="form-group">
-    <%= label f, :lon, class: "control-label" %>
-    <%= number_input f, :lon, class: "form-control" %>
-    <%= error_tag f, :lon %>
+    <%= label f, :lat_lon, class: "control-label" %>
+    <%= text_input f, :lat_lon, class: "form-control", value: (if assigns[:place], do: lat_lon(@place.geom)) %>
+    <%= error_tag f, :lat_lon %>
   </div>
   <div class="form-group">
     <%= submit "Submit", class: "btn btn-primary" %>
