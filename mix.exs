@@ -19,7 +19,7 @@ defmodule Dobar.Mixfile do
   def application do
     [mod: {Dobar, []},
      applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex]]
+                    :phoenix_ecto, :postgrex, :ex_aws, :httpoison]]
   end
 
   # Specifies which paths to compile per environment.
@@ -39,6 +39,10 @@ defmodule Dobar.Mixfile do
      {:guardian, "~>0.6.0"},
      {:comeonin, "~> 2.0"},
      {:geo, "~> 1.0"},
+     {:arc, "~> 0.5.2"},
+     {:ex_aws, "~> 0.4.10"}, # Required if using Amazon S3
+     {:httpoison, "~> 0.7"},
+     {:poison, "~> 1.2"},
      {:cowboy, "~> 1.0"}]
   end
 

@@ -36,3 +36,12 @@ config :guardian, Guardian,
       verify_issuer: true,
       secret_key: "j8vaBNDTAaUwpy2dycY52ju4tsnBj6Me+oKHziGTALGI4WN6Z9uhdW9VjZS4spuF",
       serializer: Dobar.GuardianSerializer
+
+config :arc,
+  bucket: "dobar-dev",
+  virtual_host: true
+
+config :ex_aws,
+  region: "eu-central-1",
+  access_key_id: [{:system, "AWS_ACCESS_KEY_ID"}, :instance_role],
+  secret_access_key: [{:system, "AWS_SECRET_ACCESS_KEY"}, :instance_role]
