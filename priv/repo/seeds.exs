@@ -9,3 +9,7 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+for category <- ~w(mediteranian sushi chinese fast-food) do
+  Dobar.Repo.insert!(%Dobar.Category{name: category})
+end

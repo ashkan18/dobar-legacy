@@ -7,7 +7,8 @@ defmodule Dobar.Admin.PlaceController do
   plug Guardian.Plug.EnsureAuthenticated, %{ on_failure: { Dobar.AuthenticationController, :permission_denied } }
   plug Dobar.Plug.Auth
   plug :scrub_params, "place" when action in [:create, :update]
-
+  plug :load_categories when action in [:new, :create, :edit, :update]
+  
   def index(conn, _params) do
     places = Repo.all(Place)
     render(conn, "index.html", places: places)
@@ -29,7 +30,7 @@ defmodule Dobar.Admin.PlaceController do
           |> put_flash(:info, "Place created successfully.")
           |> redirect(to: place_path(conn, :index))
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset, categories: Repo.all(Category))
+        render(conn, "new.html", changeset: changeset)
     end
   end
 
@@ -41,7 +42,7 @@ defmodule Dobar.Admin.PlaceController do
   def edit(conn, %{"id" => id}) do
     place = Repo.get!(Place, id)
     changeset = Place.changeset(place)
-    render(conn, "edit.html", place: place, changeset: changeset, categories: Repo.all(Category))
+    render(conn, "edit.html", place: place, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "place" => place_params}) do
@@ -54,7 +55,7 @@ defmodule Dobar.Admin.PlaceController do
         |> put_flash(:info, "Place updated successfully.")
         |> redirect(to: place_path(conn, :show, place))
       {:error, changeset} ->
-        render(conn, "edit.html", place: place, changeset: changeset, categories: Repo.all(Category))
+        render(conn, "edit.html", place: place, changeset: changeset)
     end
   end
 
@@ -80,5 +81,12 @@ defmodule Dobar.Admin.PlaceController do
       place_params = Dict.merge(place_params, %{"lat" => lat, "lon" => lon})
     end
     Dict.merge(place_params, %{"categories" => categories})
+  end
+
+  defp load_categories(conn, _) do query =
+    categories = Category
+                  |> Category.alphabetical
+                  |> Repo.all
+    assign(conn, :categories, categories) 
   end
 end
