@@ -16,7 +16,7 @@
       <header class="header">
         <nav role="navigation">
           <ul class="nav nav-pills pull-right">
-            <%= if assigns[:current_user] do %>
+            <%= if @current_user do %>
               <li><a href="/logout"><%= gettext "Logout" %></a></li>
             <% else %>
               <li><a href="/login"><%= gettext "Login"%></a></li>
