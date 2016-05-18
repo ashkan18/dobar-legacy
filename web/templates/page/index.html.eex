@@ -8,12 +8,14 @@
   <div class="col-lg-6">
     <h4></h4>
     <ul>
+      <%= if assigns[:current_user] do %>
       <li>
         <a href="/admin/places"><%= gettext "%{places}", places: "Places"%></a>
       </li>
       <li>
         <a href="/admin/categories"><%= gettext "%{categories}", categories: "Categories"%></a>
       </li>
+      <% end %>
     </ul>
   </div>
 </div>
