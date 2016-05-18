@@ -1,3 +1,3 @@
-defmodule Dobar.Admin.UserView do
+defmodule Dobar.Public.UserView do
   use Dobar.Web, :view
 end

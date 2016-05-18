@@ -2,11 +2,10 @@ require IEx
 defmodule Dobar.Admin.PlaceController do
   use Dobar.Web, :controller
 
-  alias Dobar.Place
-  alias Dobar.Category
+  alias Dobar.{Place, Category}
 
   plug Guardian.Plug.EnsureAuthenticated, %{ on_failure: { Dobar.AuthenticationController, :permission_denied } }
-
+  plug Dobar.Plug.Auth
   plug :scrub_params, "place" when action in [:create, :update]
 
   def index(conn, _params) do

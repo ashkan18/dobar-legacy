@@ -9,9 +9,10 @@ defmodule Dobar.Router do
     plug :put_secure_browser_headers
   end
 
-  pipeline :admin do
+  pipeline :authentication do
     plug Guardian.Plug.VerifySession # Looks in the Authorization session for the token
     plug Guardian.Plug.LoadResource
+    plug Dobar.Plug.Auth
   end
 
   pipeline :api do
@@ -21,15 +22,15 @@ defmodule Dobar.Router do
   end
 
   scope "/", Dobar do
-    pipe_through :browser # Use the default browser stack
+    pipe_through [:browser, :authentication] # Use the default browser stack
     
     get "/", PageController, :index
     get "/login", AuthenticationController, :login_page
+    get "/logout", AuthenticationController, :logout
     post "/authentication", AuthenticationController, :login
-    resources "/registrations", RegistrationController, only: [:new, :create]
+    resources "/register", Public.RegistrationController, only: [:new, :create]
     
     scope "admin/" do
-      pipe_through :admin
       resources "/users", Admin.UserController
       resources "/places", Admin.PlaceController
       resources "/categories", Admin.CategoryController

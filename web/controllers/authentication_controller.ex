@@ -23,14 +23,16 @@ defmodule Dobar.AuthenticationController do
   end
 
   def logout(conn, _params) do
-    Guardian.Plug.logout(conn)
-      |> redirect(to: "/")
+    Guardian.Plug.sign_out(conn)
+    |> put_flash(:info, "Logged out successfully.")
+    |> redirect(to: "/")
   end
 
   def permission_denied(conn, _params) do
     conn
-      |> put_status(403)
+      |> put_flash(:error, "Please sign in.")
       |> redirect(to: "/")
+      |> halt
   end
 
   defp authenticate(%{"email" => email, "password" => password}) do

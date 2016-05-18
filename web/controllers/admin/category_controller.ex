@@ -2,7 +2,8 @@ defmodule Dobar.Admin.CategoryController do
   use Dobar.Web, :controller
 
   alias Dobar.Category
-
+  plug Guardian.Plug.EnsureAuthenticated, %{ on_failure: { Dobar.AuthenticationController, :permission_denied } }
+  plug Dobar.Plug.Auth
   plug :scrub_params, "category" when action in [:create, :update]
 
   def index(conn, _params) do
