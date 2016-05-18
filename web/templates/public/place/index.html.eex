@@ -1,0 +1,6 @@
+<h2><%= gettext "Places" %></h2>
+
+<%= for place <- @places do %>
+  <%= link "#{place.name}", to: place_path(@conn, :show, place), class: "btn btn-default btn-xs" %>
+<% end %>
+
