@@ -1,4 +1,3 @@
-require IEx
 defmodule Dobar.Admin.PlaceController do
   use Dobar.Web, :controller
 
@@ -18,7 +17,6 @@ defmodule Dobar.Admin.PlaceController do
     changeset = Place.changeset(%Place{})
     conn
       |> assign(:changeset, changeset)
-      |> assign(:categories, Repo.all(Category))
       |> render("new.html")
   end
 
