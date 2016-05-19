@@ -1,0 +1,6 @@
+<h2><%= gettext "Upload your awesome photo" %></h2>
+
+<%= render "upload_form.html", changeset: @changeset,
+                               action: place_image_user_path(@conn, :create),
+                               place_id: @place_id %>
+
