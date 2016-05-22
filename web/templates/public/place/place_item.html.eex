@@ -1,0 +1,3 @@
+<a href=<%= place_path(@conn, :show, @place) %> class="thumbnail">
+  <img src=<%= List.first(@place.images).url %> class="img-responsive">
+</a>

@@ -1,6 +1,14 @@
-<h2><%= gettext "Places" %></h2>
 
-<%= for place <- @places do %>
-  <%= link "#{place.name}", to: place_path(@conn, :show, place), class: "btn btn-default btn-xs" %>
-<% end %>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h2><%= gettext "New and Upcoming" %></h2>
+    <%= render "place_carousel.html", carousel_id: "new-upcoming-places", places: @places, conn: @conn %>
+  </div>
+</div>
 
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h2><%= gettext "Most goes! Must Goes!" %></h2>
+
+  </div>
+</div>
