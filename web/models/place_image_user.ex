@@ -3,6 +3,8 @@ defmodule Dobar.PlaceImageUser do
 
   schema "place_image_users" do
     field :url, :string
+    field :notes, :string
+
     belongs_to :place, Dobar.Place
     belongs_to :user, Dobar.User
 
@@ -10,7 +12,7 @@ defmodule Dobar.PlaceImageUser do
   end
 
   @required_fields ~w(url user_id place_id)
-  @optional_fields ~w()
+  @optional_fields ~w(notes)
 
   @doc """
   Creates a changeset based on the `model` and `params`.

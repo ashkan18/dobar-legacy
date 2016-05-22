@@ -8,8 +8,9 @@ defmodule Dobar.Api.V1.PlaceController do
   def index(conn, %{"lat" => lat, "lon" => lon}) do
     results = Place
               |> Place.within_distance(lat, lon)
+              |> Repo.preload(:user_place_reviews, :images)
               |> Repo.all
     conn
-      |> json(%{closest: results})
+      |> json(%{places: results})
   end
 end

@@ -7,10 +7,15 @@
 
   <%= hidden_input f, :place_id, value: @place_id %>
   <div class="form-group">
-    <label>Photo</label>
+    <label><%= gettext "Select Photo" %></label>
     <%= file_input f, :photo, class: "form-control" %>
   </div>
 
+  <div class="form-group">
+    <label><%= gettext "Notes" %></label>
+    <%= textarea f, :notes, class: "form-control" %>
+  </div>
+  
   <div class="form-group">
     <%= submit "Submit", class: "btn btn-primary" %>
   </div>

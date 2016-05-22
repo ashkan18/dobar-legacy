@@ -20,12 +20,12 @@ defmodule Dobar.Public.PlaceImageUserController do
     %{"photo" => photo_file, "place_id" => place_id} = place_image_user_params
 
     url = upload_photo(photo_file, %{place_id: place_id, user_id: user.id})
-    changeset = PlaceImageUser.changeset(%PlaceImageUser{}, %{place_id: place_image_user_params["place_id"], user_id: user.id, url: url})
+    changeset = PlaceImageUser.changeset(%PlaceImageUser{}, %{place_id: place_id, user_id: user.id, url: url})
     case Repo.insert(changeset) do
       {:ok, place} ->
         conn
         |> put_flash(:info, "Image uploaded successfully.")
-        |> redirect(to: place_path(conn, :show, place_image_user_params.place))
+        |> redirect(to: place_path(conn, :show, place_id: place_id))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -33,8 +33,8 @@ defmodule Dobar.Public.PlaceImageUserController do
 
   defp upload_photo(photo_file, place_image_user_changeset) do
     case PlaceImage.store({photo_file, place_image_user_changeset}) do
-      {:ok, _file_name} ->
-        PlaceImage.url({photo_file, place_image_user_changeset})
+      {:ok, result} ->
+        PlaceImage.url({%{file_name: result}, place_image_user_changeset})
       _ -> nil
     end
   end

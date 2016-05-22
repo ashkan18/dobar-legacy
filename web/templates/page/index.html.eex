@@ -1,24 +1,5 @@
-<div class="jumbotron">
-  <h2><%= gettext "Welcome to %{name}", name: "Dobar!" %></h2>
-  <p class="lead">
-  </p>
-</div>
-
 <div class="row marketing">
   <div class="col-lg-6">
-    <h4></h4>
-      <%= if @current_user && @current_user.is_admin do %>
-      <h3> <%= gettext "Admin Section" %> </h3>
-      <ul>
-        <li>
-          <a href="/admin/places"><%= gettext "%{places}", places: "Places"%></a>
-        </li>
-        <li>
-          <a href="/admin/categories"><%= gettext "%{categories}", categories: "Categories"%></a>
-        </li>
-      </ul>
-      <% end %>
-      <%= link gettext("Places"), to: place_path(@conn, :index) %>
-    </ul>
+    <%= link gettext("Places"), to: place_path(@conn, :index) %>
   </div>
 </div>

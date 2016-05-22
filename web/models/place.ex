@@ -57,7 +57,7 @@ defmodule Dobar.Place do
 
   def within_distance(query, lat, lon, distance \\ 1) do
     point = %Geo.Point{ coordinates: {lat, lon}, srid: 4326}
-    from place in query, where: st_dwithin(place.geom, ^point, ^distance), preload: :user_reviews
+    from place in query, where: st_dwithin(place.geom, ^point, ^distance)
   end
 
   def paginate(query, page, size) do
