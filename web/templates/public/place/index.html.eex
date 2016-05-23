@@ -1,0 +1,14 @@
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h2><%= gettext "New and Upcoming" %></h2>
+    <%= render "place_carousel.html", carousel_id: "new-upcoming-places", places: @places, conn: @conn %>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h2><%= gettext "Most goes! Must Goes!" %></h2>
+
+  </div>
+</div>

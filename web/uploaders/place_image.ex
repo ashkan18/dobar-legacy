@@ -22,14 +22,13 @@ defmodule Dobar.PlaceImage do
   end
 
   # Override the persisted filenames:
-  def filename(version, {file, _scope}) do
-    file_basename = Path.basename(file.file_name) |> Path.basename(Path.extname(file.file_name))
-    "#{version}_#{file_basename}"
+  def filename(version, {file, scope}) do
+    "#{version}_#{scope.user_id}"
   end
 
   # Override the storage directory:
   def storage_dir(_version, {_file, scope}) do
-    "uploads/places/#{scope.id}"
+    "uploads/places/#{scope.place_id}"
   end
 
   # Provide a default URL if there hasn't been a file uploaded

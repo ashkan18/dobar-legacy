@@ -2,9 +2,9 @@ import Geo.PostGIS
 defmodule Dobar.Place do
   use Dobar.Web, :model
   import Ecto.Query
-  alias Dobar.{Category, UserPlaceReview}
+  alias Dobar.{Category, UserPlaceReview, PlaceImageUser}
 
-  @derive {Poison.Encoder, only: [:id, :name, :short_description, :description, :geom, :address, :address2, :city, :state, :country, :go, :nogo, :user_place_reviews]}
+  @derive {Poison.Encoder, only: [:id, :name, :short_description, :description, :geom, :address, :address2, :city, :state, :country, :go, :nogo, :user_place_reviews, :categories, :images]}
   
   schema "places" do
     field :name, :string
@@ -25,6 +25,8 @@ defmodule Dobar.Place do
 
     has_many :user_place_reviews, UserPlaceReview
     has_many :user_reviews, through: [:user_place_reviews, :user]
+
+    has_many :images, PlaceImageUser
 
     embeds_many :categories, Category, on_replace: :delete
     timestamps
@@ -55,7 +57,7 @@ defmodule Dobar.Place do
 
   def within_distance(query, lat, lon, distance \\ 1) do
     point = %Geo.Point{ coordinates: {lat, lon}, srid: 4326}
-    from place in query, where: st_dwithin(place.geom, ^point, ^distance), preload: :user_reviews
+    from place in query, where: st_dwithin(place.geom, ^point, ^distance)
   end
 
   def paginate(query, page, size) do

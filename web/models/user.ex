@@ -7,7 +7,7 @@ defmodule Dobar.User do
     field :email, :string
     field :crypted_password, :string
     field :password, :string, virtual: true
-    field :is_admin, :boolean
+    field :is_admin, :boolean, default: false
 
     has_many :user_place_reviews, Dobar.UserPlaceReview
     has_many :reviewed_places, through: [:user_place_reviews, :place]

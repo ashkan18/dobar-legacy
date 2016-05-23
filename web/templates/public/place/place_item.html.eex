@@ -1,0 +1,6 @@
+<a href=<%= place_path(@conn, :show, @place) %> class="">
+  <img src=<%= List.first(@place.images).url %> class="thumbnail img-responsive">
+  <div class = "caption text-center">
+    <h3> <%= @place.name %></h3>
+  </div>
+</a>

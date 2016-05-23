@@ -1,0 +1,49 @@
+<h2>Show place</h2>
+
+<ul>
+  <li>
+    <img src=<%= google_map_url(@place.geom, 400, 200) %> >
+  </li>
+  <li>
+    <strong><%= gettext "Name:" %></strong>
+    <%= @place.name %>
+  </li>
+  <li>
+    <strong><%= gettext "Type:" %></strong>
+    <%= Gettext.gettext(Dobar.Gettext, @place.type) %>
+  <li>
+    <strong><%= gettext "Short description:" %></strong>
+    <%= @place.short_description %>
+  </li>
+  <li>
+    <strong><%= gettext "Phone:" %> </strong>
+    <%= @place.phone %>
+  </li>
+  <li>
+    <strong><%= gettext "Description:" %></strong>
+    <%= @place.description %>
+  </li>
+
+  <li>
+    <strong><%= gettext "Go:" %></strong>
+    <%= @place.go %>
+  </li>
+
+  <li>
+     <strong><%= gettext "No Go:" %></strong>
+    <%= @place.nogo %>
+  </li>
+  <%= for place_image_user <- @place.images do %>
+    <li>
+      <img  src=<%= Dobar.PlaceImage.url({place_image_user.url, place_image_user}) %> >
+    </li>
+  <% end %>
+  <li>
+    <%= link gettext("Upload"), to: place_image_user_path(@conn, :new, place_id: @place.id) %>
+  </li>
+</ul>
+
+<%= if @current_user && @current_user.is_admin do %>
+  <%= link "Edit", to: place_path(@conn, :edit, @place) %>
+<% end %>
+<%= link "Back", to: place_path(@conn, :index) %>

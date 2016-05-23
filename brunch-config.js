@@ -2,8 +2,13 @@ exports.config = {
   // See http://brunch.io/#documentation for docs.
   files: {
     javascripts: {
-      joinTo: "js/app.js"
-
+      joinTo: "js/app.js",
+      order: {
+        before: [
+          "web/static/vendor/jquery/dist/jquery.min.js",
+          "web/static/vendor/bootstrap/dist/js/bootstrap.js"
+        ]
+      }
       // To use a separate vendor.js bundle, specify two files path
       // https://github.com/brunch/brunch/blob/stable/docs/config.md#files
       // joinTo: {
@@ -32,7 +37,11 @@ exports.config = {
     // This option sets where we should place non-css and non-js assets in.
     // By default, we set this to "/web/static/assets". Files in this directory
     // will be copied to `paths.public`, which is "priv/static" by default.
-    assets: /^(web\/static\/assets)/
+    assets: /^(web\/static\/assets)/,
+    ignored: [
+      /^(web\/static\/vendor\/bootstrap\/)(?!.*min.(js|css)$)/,
+      /^(web\/static\/vendor\/jquery\/)(?!.*min.js)/
+    ]
   },
 
   // Phoenix paths configuration

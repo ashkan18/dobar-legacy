@@ -29,6 +29,9 @@ defmodule Dobar.Router do
     get "/logout", AuthenticationController, :logout
     post "/authentication", AuthenticationController, :login
     resources "/register", Public.RegistrationController, only: [:new, :create]
+
+    resources "/places", Public.PlaceController, only: [:show, :index]
+    resources "/place_image_users", Public.PlaceImageUserController, only: [:new, :create]
     
     scope "admin/" do
       resources "/users", Admin.UserController
