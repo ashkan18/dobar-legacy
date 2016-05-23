@@ -3,13 +3,13 @@
       <!-- Carousel items -->
       <div class="carousel-inner">
         <div class="item active">
-          <%= for place <- @places do %>
-            <div class="row">
+          <div class="row">
+            <%= for place <- @places do %>
               <div class="col-sm-3">
                 <%= render "place_item.html", place: place, conn: @conn %>
               </div>
-            </div>
-          <% end %>
+            <% end %>
+          </div>
           <!--/row-->
         </div>
         <!--/item-->

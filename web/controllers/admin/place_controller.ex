@@ -1,3 +1,4 @@
+require IEx
 defmodule Dobar.Admin.PlaceController do
   use Dobar.Web, :controller
 
@@ -22,6 +23,7 @@ defmodule Dobar.Admin.PlaceController do
 
   def create(conn, %{"place" => place_params}) do
     changeset = Place.changeset(%Place{}, prepare_params(place_params))
+    
     case Repo.insert(changeset) do
       {:ok, _place} ->
         conn
@@ -70,14 +72,15 @@ defmodule Dobar.Admin.PlaceController do
   end
 
   defp prepare_params(place_params) do
-    # format categories to include name tag
-    categories = Dict.get(place_params, "categories")
-                  |> Enum.map(fn c -> %{name: c} end)
+    
     if place_params !== :empty && Map.has_key?(place_params, "lat_lon")do
       {lat_lon, place_params} = Dict.pop(place_params, "lat_lon")
       [lat, lon] = String.split(lat_lon, ",")
       place_params = Dict.merge(place_params, %{"lat" => lat, "lon" => lon})
     end
+    # format categories to include name tag
+    categories = Dict.get(place_params, "categories_list")
+                  |> Enum.map(fn c -> %{name: c} end)
     Dict.merge(place_params, %{"categories" => categories})
   end
 

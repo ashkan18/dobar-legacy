@@ -33,8 +33,8 @@ defmodule Dobar.Place do
   end
 
   @place_types ~w(restaurant cafe)
-  @required_fields ~w(name type short_description geom address address2 city state country)
-  @optional_fields ~w(description go nogo categories phone working_hours)
+  @required_fields ~w(name type short_description geom address city state country categories phone working_hours)
+  @optional_fields ~w(description go nogo address2)
 
   @doc """
   Creates a changeset based on the `model` and `params`.

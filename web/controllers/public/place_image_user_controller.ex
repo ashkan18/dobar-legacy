@@ -5,7 +5,7 @@ defmodule Dobar.Public.PlaceImageUserController do
   plug Guardian.Plug.EnsureAuthenticated, %{ on_failure: { Dobar.AuthenticationController, :permission_denied } }
   plug Dobar.Plug.Auth
 
-  alias Dobar.{PlaceImageUser, Repo, PlaceImage}
+  alias Dobar.{PlaceImageUser, Repo, PlaceImage, Place}
 
   plug :scrub_params, "place_image_user" when action in [:create, :update]
   
@@ -22,10 +22,10 @@ defmodule Dobar.Public.PlaceImageUserController do
     url = upload_photo(photo_file, %{place_id: place_id, user_id: user.id})
     changeset = PlaceImageUser.changeset(%PlaceImageUser{}, %{place_id: place_id, user_id: user.id, url: url})
     case Repo.insert(changeset) do
-      {:ok, place} ->
+      {:ok, place_image_user} ->
         conn
         |> put_flash(:info, "Image uploaded successfully.")
-        |> redirect(to: place_path(conn, :show, place_id: place_id))
+        |> redirect(to: place_path(conn, :show, %Place{id: place_id}))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end

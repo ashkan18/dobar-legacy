@@ -45,7 +45,7 @@
 
   <div class="form-group">
     <%= label f, :categories, class: "control-label" %>
-    <%= multiple_select(f, :categories, Enum.map(@categories, fn c -> c.name end),
+    <%= multiple_select(f, :categories_list, Enum.map(@categories, fn c -> c.name end),
                           selected: (if assigns[:place], do: Enum.map(@place.categories, & &1.name), else: [])) %>
   </div>
 
