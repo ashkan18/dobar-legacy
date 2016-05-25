@@ -22,7 +22,7 @@
 <div class="text-center">
   <a href=<%= "tel:#{@place.phone}" %> >
     <img src="/images/icons/call.png" class="icon">
-    <div class="phone-number"><%= @place.phone %></div>
+    <h3 class="phone-number"><%= @place.phone %></h3>
   </a>
 </div>
 
