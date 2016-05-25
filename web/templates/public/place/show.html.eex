@@ -52,6 +52,13 @@
   <%= link gettext("Upload"), to: place_image_user_path(@conn, :new, place_id: @place.id), class: "col-xs-12 btn btn-default"%>
 </div>
 
+<div class="short-description box-shadow standard-margin">
+  <img src="/images/icons/long_desc.png" class="icon">
+  <h2 class="long-desc-content text-center">
+    <%= @place.long_description %>
+  </h2>
+</div>
+
 <%= if @current_user && @current_user.is_admin do %>
   <div class="admin row">
     <%= link "Edit", to: place_path(@conn, :edit, @place), class: "col-xs-12 btn btn-default" %>
