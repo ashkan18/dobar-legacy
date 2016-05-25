@@ -19,8 +19,9 @@ defmodule Dobar.Public.PlaceImageUserController do
     
     %{"photo" => photo_file, "place_id" => place_id} = place_image_user_params
 
-    url = upload_photo(photo_file, %{place_id: place_id, user_id: user.id})
-    changeset = PlaceImageUser.changeset(%PlaceImageUser{}, %{place_id: place_id, user_id: user.id, url: url})
+    upload_token = Integer.to_string(:os.system_time(:seconds))
+    url = upload_photo(photo_file, %{place_id: place_id, user_id: user.id, upload_token: upload_token})
+    changeset = PlaceImageUser.changeset(%PlaceImageUser{}, %{place_id: place_id, user_id: user.id, url: url, upload_token: upload_token})
     case Repo.insert(changeset) do
       {:ok, _place_image_user} ->
         conn

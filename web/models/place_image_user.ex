@@ -4,6 +4,7 @@ defmodule Dobar.PlaceImageUser do
   schema "place_image_users" do
     field :url, :string
     field :notes, :string
+    field :upload_token, :string
 
     belongs_to :place, Dobar.Place
     belongs_to :user, Dobar.User

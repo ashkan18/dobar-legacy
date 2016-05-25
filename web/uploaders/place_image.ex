@@ -23,7 +23,7 @@ defmodule Dobar.PlaceImage do
 
   # Override the persisted filenames:
   def filename(version, {_file, scope}) do
-    "#{version}_#{scope.user_id}_#{:os.system_time(:seconds)}"
+    "#{version}_#{scope.user_id}_#{scope.upload_token}"
   end
 
   # Override the storage directory:
