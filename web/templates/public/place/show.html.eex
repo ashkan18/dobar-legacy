@@ -26,6 +26,12 @@
   </a>
 </div>
 
+<div class="other-info">
+  <%= for option <- ~w(delivery wifi parking) do %>
+    <img src=<%= "/images/icons/#{option}.png" %> class="icon">
+  <% end %>
+</div>
+
 <div class="short-description box-shadow standard-margin">
   <img src="/images/icons/short_desc.png" class="icon">
   <h2 class="short-desc-content text-center">
