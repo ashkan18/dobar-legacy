@@ -12,7 +12,7 @@ defmodule Dobar.PlaceImageUser do
     timestamps
   end
 
-  @required_fields ~w(url user_id place_id)
+  @required_fields ~w(url user_id place_id upload_token)
   @optional_fields ~w(notes)
 
   @doc """
