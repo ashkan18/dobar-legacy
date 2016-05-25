@@ -1,49 +1,50 @@
-<h2>Show place</h2>
+<h1 class="text-center"><%= @place.name %></h1>
 
-<ul>
-  <li>
-    <img src=<%= google_map_url(@place.geom, 400, 200) %> >
-  </li>
-  <li>
-    <strong><%= gettext "Name:" %></strong>
-    <%= @place.name %>
-  </li>
-  <li>
-    <strong><%= gettext "Type:" %></strong>
-    <%= Gettext.gettext(Dobar.Gettext, @place.type) %>
-  <li>
-    <strong><%= gettext "Short description:" %></strong>
+<div class="static-map">
+  <img src=<%= google_map_url(@place.geom, 800, 200) %> class="img-rounded">
+</div>
+
+<div class="text-center">
+  <img src=<%= "/images/icons/#{@place.type}.png" %> class="icon">
+</div>
+
+<div class="row standard-margin">
+  <div class="col-xs-6 text-center">
+    <img src="/images/icons/nogo.png" class="icon">
+    <div class="rev-number"> x <%= @place.nogo %> </div>
+  </div>
+  <div class="col-xs-6 text-center">
+    <img src="/images/icons/go.png" class="icon">
+    <div class="rev-number"> x <%= @place.go %> </div>
+  </div>
+</div>
+
+<div class="text-center">
+  <a href="tel:#{@place.phone}">
+    <img src="/images/icons/call.png" class="icon">
+    <div class="phone-number"><%= @place.phone %></div>
+  </a>
+</div>
+
+<div class="short-description box-shadow standard-margin">
+  <img src="/images/icons/short_desc.png" class="icon">
+  <h2 class="short-desc-content text-center">
     <%= @place.short_description %>
-  </li>
-  <li>
-    <strong><%= gettext "Phone:" %> </strong>
-    <%= @place.phone %>
-  </li>
-  <li>
-    <strong><%= gettext "Description:" %></strong>
-    <%= @place.description %>
-  </li>
+  </h2>
+</div>
 
-  <li>
-    <strong><%= gettext "Go:" %></strong>
-    <%= @place.go %>
-  </li>
-
-  <li>
-     <strong><%= gettext "No Go:" %></strong>
-    <%= @place.nogo %>
-  </li>
+<div class="photo-library row well  standard-margin">
+  <img src="/images/icons/photos.png" class="icon">
   <%= for place_image_user <- @place.images do %>
-    <li>
-      <img  src=<%= Dobar.PlaceImage.url({place_image_user.url, place_image_user}) %> >
-    </li>
+    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+      <img src=<%= Dobar.PlaceImage.url({place_image_user.url, place_image_user}) %> >
+    </div>
   <% end %>
-  <li>
-    <%= link gettext("Upload"), to: place_image_user_path(@conn, :new, place_id: @place.id) %>
-  </li>
-</ul>
+  <%= link gettext("Upload"), to: place_image_user_path(@conn, :new, place_id: @place.id), class: "col-xs-12 btn btn-default"%>
+</div>
 
 <%= if @current_user && @current_user.is_admin do %>
-  <%= link "Edit", to: place_path(@conn, :edit, @place) %>
+  <div class="admin row">
+    <%= link "Edit", to: place_path(@conn, :edit, @place), class: "col-xs-12 btn btn-default" %>
+  </div>
 <% end %>
-<%= link "Back", to: place_path(@conn, :index) %>

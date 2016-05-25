@@ -22,6 +22,15 @@ defmodule Dobar.Place do
     field :type, :string, default: "restaurant"
     field :phone, :string
     field :working_hours, :string
+    field :delivery, :boolean
+    field :card, :boolean
+    field :wifi, :boolean
+    field :outdoor_seating, :boolean
+    field :takes_reservation, :boolean
+    field :good_for_groups, :boolean
+    field :weelchaire_accessible, :boolean
+    field :smoking, :boolean
+    field :parking, :boolean
 
     has_many :user_place_reviews, UserPlaceReview
     has_many :user_reviews, through: [:user_place_reviews, :user]
@@ -34,7 +43,7 @@ defmodule Dobar.Place do
 
   @place_types ~w(restaurant cafe)
   @required_fields ~w(name type short_description geom address city state country categories phone working_hours)
-  @optional_fields ~w(description go nogo address2)
+  @optional_fields ~w(description go nogo address2 delivery card wifi outdoor_seating takes_reservation good_for_groups weelchaire_accessible smoking parking)
 
   @doc """
   Creates a changeset based on the `model` and `params`.

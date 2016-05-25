@@ -22,7 +22,7 @@ defmodule Dobar.PlaceImage do
   end
 
   # Override the persisted filenames:
-  def filename(version, {file, scope}) do
+  def filename(version, {_file, scope}) do
     "#{version}_#{scope.user_id}"
   end
 

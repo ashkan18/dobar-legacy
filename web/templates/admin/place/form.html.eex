@@ -49,6 +49,33 @@
                           selected: (if assigns[:place], do: Enum.map(@place.categories, & &1.name), else: [])) %>
   </div>
 
+  <div class="row">
+    <div class="col-md-3">  
+      <%= for option <- [:delivery, :card, :wifi] do %>
+        <div>
+          <%= checkbox f, option %>
+          <%= label f, option%>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-3">
+      <%= for option <- [:outdoor_seating, :takes_reservation, :good_for_groups] do %>
+        <div>
+          <%= checkbox f, option %>
+          <%= label f, option%>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-3">
+      <%= for option <- [:weelchaire_accessible, :smoking, :parking] do %>
+        <div>
+          <%= checkbox f, option %>
+          <%= label f, option%>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  
   <div class="form-group">
     <%= label f, :address, class: "control-label" %>
     <%= text_input f, :address, class: "form-control" %>

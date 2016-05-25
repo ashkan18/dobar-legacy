@@ -1,7 +1,7 @@
 defmodule Dobar.Public.PlaceController do
   use Dobar.Web, :controller
 
-  alias Dobar.{Repo, Place, PlaceImageUser}
+  alias Dobar.{Repo, Place}
 
   def index(conn, _params) do
     places = Repo.all(Place)

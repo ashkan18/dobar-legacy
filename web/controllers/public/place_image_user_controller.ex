@@ -22,7 +22,7 @@ defmodule Dobar.Public.PlaceImageUserController do
     url = upload_photo(photo_file, %{place_id: place_id, user_id: user.id})
     changeset = PlaceImageUser.changeset(%PlaceImageUser{}, %{place_id: place_id, user_id: user.id, url: url})
     case Repo.insert(changeset) do
-      {:ok, place_image_user} ->
+      {:ok, _place_image_user} ->
         conn
         |> put_flash(:info, "Image uploaded successfully.")
         |> redirect(to: place_path(conn, :show, %Place{id: place_id}))

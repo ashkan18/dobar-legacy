@@ -84,7 +84,7 @@ defmodule Dobar.Admin.PlaceController do
     Dict.merge(place_params, %{"categories" => categories})
   end
 
-  defp load_categories(conn, _) do query =
+  defp load_categories(conn, _) do
     categories = Category
                   |> Category.alphabetical
                   |> Repo.all

@@ -15,8 +15,8 @@
         <!--/item-->
       </div>
       <!--/carousel-inner--> 
-      <a class="left carousel-control" href=<%= "##{@carousel_id}" %> data-slide="prev">‹</a>
-      <a class="right carousel-control" href=<%= "##{@carousel_id}" %> data-slide="next">›</a>
+      <!--<a class="left carousel-control" href=<%= "##{@carousel_id}" %> data-slide="prev">‹</a>
+      <a class="right carousel-control" href=<%= "##{@carousel_id}" %> data-slide="next">›</a> -->
     </div>
     <!--/myCarousel-->
 </div>
