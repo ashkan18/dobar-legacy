@@ -26,6 +26,9 @@ config :dobar, Dobar.Repo,
   ssl: true,
   extensions: [{Geo.PostGIS.Extension, library: Geo}]
 
+config :arc,
+  bucket: "dobar",
+
 # Do not print debug messages in production
 config :logger, level: :info
 
