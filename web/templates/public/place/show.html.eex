@@ -1,7 +1,7 @@
-<h1 class="text-center"><%= @place.name %></h1>
+<h1 class="text-center"><strong><%= @place.name %></strong></h1>
 
 <div class="static-map">
-  <img src=<%= google_map_url(@place.geom, 800, 200) %> class="img-rounded">
+  <img src=<%= google_map_url(@place.geom, 800, 200) %> class="img-rounded col-xs-12">
 </div>
 
 <div class="text-center">
@@ -11,11 +11,11 @@
 <div class="row standard-margin">
   <div class="col-xs-6 text-center">
     <img src="/images/icons/nogo.png" class="icon">
-    <div class="rev-number"> x <%= @place.nogo %> </div>
+    <h3 class="rev-number text-bold"> x <%= @place.nogo %> </h3>
   </div>
   <div class="col-xs-6 text-center">
     <img src="/images/icons/go.png" class="icon">
-    <div class="rev-number"> x <%= @place.go %> </div>
+    <h3 class="rev-number"> x <%= @place.go %> </h3>
   </div>
 </div>
 

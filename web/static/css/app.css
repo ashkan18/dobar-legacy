@@ -34,6 +34,11 @@ form.link, form.button {
   padding-left: 15px;
 }
 
+.icon {
+  width: 85px;
+  height: 85px;
+}
+
 /* Customize container */
 @media (min-width: 768px) {
   .container {
