@@ -10,6 +10,6 @@
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
-for category <- ~w(mediteranian sushi chinese fast-food) do
+for category <- ~w(italian sandwiches chinese pizza mexican breakfast japanese burgers seafood inidian french mediteranian sushi fast-food kabab sofreh-khaneh) do
   Dobar.Repo.insert!(%Dobar.Category{name: category})
 end
