@@ -14,7 +14,7 @@ use Mix.Config
 config :dobar, Dobar.Endpoint,
   http: [port: {:system, "PORT"}],
   url: [host: "example.com", port: 80],
-  cache_static_manifest: "priv/static/manifest.json"
+  cache_static_manifest: "priv/static/manifest.json",
   secret_key_base: System.get_env("SECRET_KEY_BASE")
 
 # Configure your database
@@ -22,7 +22,7 @@ config :dobar, Dobar.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: System.get_env("DATABASE_URL"),
   pool_size: 20,
-  ssl: true
+  ssl: true,
   extensions: [{Geo.PostGIS.Extension, library: Geo}]
 
 # Do not print debug messages in production
