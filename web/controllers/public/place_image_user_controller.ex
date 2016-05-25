@@ -17,11 +17,11 @@ defmodule Dobar.Public.PlaceImageUserController do
   def create(conn, %{"place_image_user" => place_image_user_params}) do
     user = Guardian.Plug.current_resource(conn)
     
-    %{"photo" => photo_file, "place_id" => place_id} = place_image_user_params
+    %{"photo" => photo_file, "place_id" => place_id, "notes" => notes} = place_image_user_params
 
     upload_token = Integer.to_string(:os.system_time(:seconds))
     url = upload_photo(photo_file, %{place_id: place_id, user_id: user.id, upload_token: upload_token})
-    changeset = PlaceImageUser.changeset(%PlaceImageUser{}, %{place_id: place_id, user_id: user.id, url: url, upload_token: upload_token})
+    changeset = PlaceImageUser.changeset(%PlaceImageUser{}, %{place_id: place_id, user_id: user.id, url: url, upload_token: upload_token, notes: notes})
     case Repo.insert(changeset) do
       {:ok, _place_image_user} ->
         conn
