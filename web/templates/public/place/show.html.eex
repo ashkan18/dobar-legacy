@@ -43,7 +43,7 @@
   <img src="/images/icons/photos.png" class="icon">
   <%= for place_image_user <- @place.images do %>
     <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-      <img src=<%= Dobar.PlaceImage.url({place_image_user.url, place_image_user}) %> >
+      <img src=<%= Dobar.PlaceImage.url({place_image_user.url, place_image_user}) %> class="thumbnail">
     </div>
   <% end %>
   <%= link gettext("Upload"), to: place_image_user_path(@conn, :new, place_id: @place.id), class: "col-xs-12 btn btn-default"%>
