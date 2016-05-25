@@ -1,6 +1,6 @@
-<a href=<%= place_path(@conn, :show, @place) %> >
+<a href=<%= place_path(@conn, :show, @place) %> class="thumbnail">
   <%= if length(@place.images) > 0 do %>
-    <img src=<%= Dobar.PlaceImage.url({List.first(@place.images).url, List.first(@place.images)}, :thumb) %> class="thumbnail">
+    <img src=<%= Dobar.PlaceImage.url({List.first(@place.images).url, List.first(@place.images)}, :thumb) %> >
   <% end %>
   <div class = "caption text-center">
     <h3> <%= @place.name %></h3>
