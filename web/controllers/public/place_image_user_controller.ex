@@ -27,7 +27,7 @@ defmodule Dobar.Public.PlaceImageUserController do
         |> put_flash(:info, "Image uploaded successfully.")
         |> redirect(to: place_path(conn, :show, %Place{id: place_id}))
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        render(conn, "new.html", changeset: changeset, place_id: place_id)
     end
   end
 
