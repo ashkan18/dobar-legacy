@@ -46,7 +46,7 @@
   <%= for place_image_user <- @place.images do %>
     <div class="col-lg-3 col-md-4 col-xs-6 thumbnail">
       <img src=<%= Dobar.PlaceImage.url({place_image_user.url, place_image_user}) %> >
-      <div class="image-notes"><%= @place_image_user.notes %></div>
+      <div class = "caption text-center"><%= @place_image_user.notes %></div>
     </div>
   <% end %>
   <%= link gettext("Upload"), to: place_image_user_path(@conn, :new, place_id: @place.id), class: "col-xs-12 btn btn-default"%>
