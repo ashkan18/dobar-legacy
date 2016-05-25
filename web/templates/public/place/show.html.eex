@@ -55,7 +55,7 @@
 <div class="short-description box-shadow standard-margin">
   <img src="/images/icons/long_desc.png" class="icon">
   <h2 class="long-desc-content text-center">
-    <%= @place.long_description %>
+    <%= @place.description %>
   </h2>
 </div>
 
