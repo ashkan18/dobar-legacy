@@ -42,15 +42,17 @@
 <% end %>
 
 <div class="photo-library row well standard-margin">
-  <div>
+  <div class="row">
     <img src="/images/icons/photos.png" class="icon pull-left">
   </div>
+  <div class="row">
   <%= for place_image_user <- @place.images do %>
     <div class="col-lg-3 col-md-4 col-xs-6 thumbnail">
       <img src=<%= Dobar.PlaceImage.url({place_image_user.url, place_image_user}, :thumb) %> >
       <div class = "caption text-center"><%= place_image_user.notes %></div>
     </div>
   <% end %>
+  </div>
   <%= link gettext("Upload"), to: place_image_user_path(@conn, :new, place_id: @place.id), class: "col-xs-12 btn btn-default"%>
 </div>
 
