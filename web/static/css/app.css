@@ -34,6 +34,12 @@ form.link, form.button {
   padding-left: 15px;
 }
 
+
+.standard-margin {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .icon {
   width: 85px;
   height: 85px;
