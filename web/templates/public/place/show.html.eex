@@ -27,8 +27,10 @@
 </div>
 
 <div class="other-info text-center standard-margin">
-  <%= for option <- ~w(delivery wifi parking) do %>
-    <img src=<%= "/images/icons/#{option}.png" %> class="icon">
+  <%= for option <- ~w(delivery card wifi outdoor_seating parking takes_reservation good_for_groups weelchaire_accessible smoking) do %>
+    <%= if Map.get(@place, String.to_atom(option)) do %>
+      <img src=<%= "/images/icons/#{option}.png" %> class="icon">
+    <% end %>
   <% end %>
 </div>
 
@@ -47,7 +49,7 @@
   </div>
   <div class="row">
     <%= for place_image_user <- @place.images do %>
-      <div class="col-lg-3 col-md-4 col-xs-6 thumbnail">
+      <div class="col-lg-3 col-md-6 col-xs-12 thumbnail">
         <img src=<%= Dobar.PlaceImage.url({place_image_user.url, place_image_user}, :thumb) %> >
         <div class = "caption text-center"><%= place_image_user.notes %></div>
       </div>
