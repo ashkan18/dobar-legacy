@@ -4,6 +4,10 @@
   <% end %>
   <div class = "caption text-center">
     <h3> <%= @place.name %></h3>
-    <div class="image-description"><%= @place.short_description %></div>
+    <div class="image-description">
+      <%= for category <- @place.categories do %>
+        <%= "##{Gettext.gettext(Dobar.Gettext, category.name)}" %>
+      <% end %>
+    </div>
   </div>
 </a>
