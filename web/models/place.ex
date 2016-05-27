@@ -31,6 +31,9 @@ defmodule Dobar.Place do
     field :weelchaire_accessible, :boolean
     field :smoking, :boolean
     field :parking, :boolean
+    field :instagram, :string
+    field :facebook, :string
+    field :twitter, :string
 
     has_many :user_place_reviews, UserPlaceReview
     has_many :user_reviews, through: [:user_place_reviews, :user]
@@ -43,7 +46,7 @@ defmodule Dobar.Place do
 
   @place_types ~w(restaurant cafe)
   @required_fields ~w(name type short_description geom address city state country categories phone working_hours)
-  @optional_fields ~w(description go nogo address2 delivery card wifi outdoor_seating takes_reservation good_for_groups weelchaire_accessible smoking parking)
+  @optional_fields ~w(description go nogo address2 delivery card wifi outdoor_seating takes_reservation good_for_groups weelchaire_accessible smoking parking instagram facebook twitter)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -67,6 +70,12 @@ defmodule Dobar.Place do
   def within_distance(query, lat, lon, distance \\ 1) do
     point = %Geo.Point{ coordinates: {lat, lon}, srid: 4326}
     from place in query, where: st_dwithin(place.geom, ^point, ^distance)
+  end
+
+  def with_name(query, search_term) do
+    from place in query,
+    where: fragment("? % ?", place.name, ^search_term),
+    order_by: fragment("similarity(?, ?) DESC", place.name, ^search_term)
   end
 
   def paginate(query, page, size) do
