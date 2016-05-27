@@ -4,4 +4,8 @@ defmodule Dobar.Public.PlaceView do
   def google_map_url(%Geo.Point{coordinates: {lat, lon}}, x, y) do 
     "https://maps.googleapis.com/maps/api/staticmap?center=#{lat},#{lon}&markers=color:blue|#{lat},#{lon}&zoom=13&size=#{x}x#{y}&key=AIzaSyBCOj7b6tahJ1qR6zU8XL5xH6KcH5tyMwU"
   end
+
+  def full_address(place) do
+    "#{place.address}, #{place.address2}, #{place.city}, #{place.state}, #{place.country}"
+  end
 end
