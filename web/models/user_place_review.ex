@@ -12,8 +12,8 @@ defmodule Dobar.UserPlaceReview do
     timestamps
   end
 
-  @required_fields ~w(go comment place_id user_id)
-  @optional_fields ~w()
+  @required_fields ~w(go place_id user_id)
+  @optional_fields ~w(comment)
 
   @doc """
   Creates a changeset based on the `model` and `params`.

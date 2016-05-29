@@ -45,6 +45,10 @@ form.link, form.button {
   height: 85px;
 }
 
+.clickable {
+  cursor: pointer;
+}
+
 /* Customize container */
 @media (min-width: 768px) {
   .container {

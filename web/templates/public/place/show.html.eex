@@ -11,12 +11,20 @@
 
 <div class="row standard-margin">
   <div class="col-xs-6 text-center">
-    <img src="/images/icons/nogo.png" class="icon">
-    <h3 class="rev-number text-bold"> x <%= @place.nogo %> </h3>
+    <%= form_for @changeset, user_place_review_path(@conn, :create), fn f -> %>
+      <img src="/images/icons/nogo.png" class="icon clickable" onclick="submit()">
+      <%= hidden_input f, :go, value: "false" %>
+      <%= hidden_input f, :place_id, value: @place.id %>
+      <h3 class="rev-number text-bold"> x <%= @place.nogo %> </h3>
+    <% end %>
   </div>
   <div class="col-xs-6 text-center">
-    <img src="/images/icons/go.png" class="icon">
-    <h3 class="rev-number"> x <%= @place.go %> </h3>
+    <%= form_for @changeset, user_place_review_path(@conn, :create), fn f -> %>
+      <img src="/images/icons/go.png" class="icon clickable" onclick="submit()">
+      <%= hidden_input f, :go, value: "true" %>
+      <%= hidden_input f, :place_id, value: @place.id %>
+      <h3 class="rev-number"> x <%= @place.go %> </h3>
+    <% end %>
   </div>
 </div>
 

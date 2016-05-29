@@ -24,13 +24,14 @@ defmodule Dobar.Router do
   scope "/", Dobar do
     pipe_through [:browser, :authentication] # Use the default browser stack
     
-    #get "/", PageController, :index
+    get "/", Public.PlaceController, :index
     get "/login", AuthenticationController, :login_page
     get "/logout", AuthenticationController, :logout
     post "/authentication", AuthenticationController, :login
     resources "/register", Public.RegistrationController, only: [:new, :create]
 
-    resources "/", Public.PlaceController, only: [:show, :index]
+    resources "/place", Public.PlaceController, only: [:show, :index]
+    resources "/user_place_reviews", Public.UserPlaceReviewController, only: [:new, :create]
     resources "/place_image_users", Public.PlaceImageUserController, only: [:new, :create]
     
     scope "admin/" do
