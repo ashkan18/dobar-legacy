@@ -1,11 +1,19 @@
+require IEx
 defmodule Dobar.Public.PlaceController do
   use Dobar.Web, :controller
 
-  alias Dobar.{Repo, Place, UserPlaceReview}
+  alias Dobar.{Repo, Place, UserPlaceReview, City}
 
-  def index(conn, _params) do
-    places = Repo.all(Place)
+  plug :load_cities when action in [:index]
+
+  def index(conn, params) do
+    places = Place
+              |> filter_city(params["city_id"])
+              |> filter_categories(params["categories"])
+              |> search_by_name(params["search"])
+              |> Repo.all
               |> Repo.preload([:images, :user_reviews])
+
     conn
       |> assign(:places, places)
       |> render("index.html")
@@ -19,5 +27,36 @@ defmodule Dobar.Public.PlaceController do
       |> assign(:place, place)
       |> assign(:changeset, changeset)
       |> render("show.html")
+  end
+
+  defp load_cities(conn, _) do
+    cities = City
+              |> City.alphabetical
+              |> Repo.all
+    assign(conn, :cities, cities) 
+  end
+
+  defp filter_city(query, city_id) do
+    if city_id do
+      city = Repo.get!(City, city_id)
+      
+      query 
+        |> Place.within_distance(city.lat, city.lon, city.area)
+    else
+      query
+    end
+  end
+
+  defp filter_categories(query, categories) do
+    query
+  end
+
+  defp search_by_name(query, search_params) do
+    if search_params["term"] do
+      query
+        |> Place.with_name(search_params["term"])
+    else
+      query
+    end
   end
 end
