@@ -1,7 +1,7 @@
 <h1 class="text-center"><strong><%= @place.name %></strong></h1>
 
 <div class="static-map">
-  <img src=<%= google_map_url(@place.geom, 800, 200) %> class="img-rounded col-xs-12">
+  <%= raw(google_map_url(@place.geom, "100%", 200)) %>
   <h3 class="text-center"> <%= full_address(@place) %> </h3>
 </div>
 

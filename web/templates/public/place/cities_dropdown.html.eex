@@ -8,7 +8,7 @@
     <span class="caret"></span>
   </button>
   <ul class="dropdown-menu">
-    <%= for city <- @cities do %>
+    <%= for city <- @cities, to_string(city.id) != @conn.params["city_id"] do %>
       <li><a href=<%= "/places?city_id=#{city.id}" %> > <%= Gettext.gettext(Dobar.Gettext, city.name) %> </a></li>
     <% end %>
   </ul>

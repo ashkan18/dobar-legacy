@@ -17,6 +17,5 @@
 <div class="panel panel-default row">
   <div class="panel-body">
     <h2><%= gettext "Most goes! Must Goes!" %></h2>
-
   </div>
 </div>
