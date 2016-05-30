@@ -1,0 +1,34 @@
+<h2>Listing cities</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Lat</th>
+      <th>Lon</th>
+      <th>Area</th>
+      <th>Enabaled</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for city <- @cities do %>
+    <tr>
+      <td><%= city.name %></td>
+      <td><%= city.lat %></td>
+      <td><%= city.lon %></td>
+      <td><%= city.area %></td>
+      <td><%= city.enabaled %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: city_path(@conn, :show, city), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: city_path(@conn, :edit, city), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: city_path(@conn, :delete, city), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New city", to: city_path(@conn, :new) %>

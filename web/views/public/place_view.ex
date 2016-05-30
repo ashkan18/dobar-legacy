@@ -1,3 +1,4 @@
+require IEx
 defmodule Dobar.Public.PlaceView do
   use Dobar.Web, :view
 

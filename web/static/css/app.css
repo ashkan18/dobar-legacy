@@ -17,6 +17,25 @@ form.link, form.button {
 /* Custom page header */
 .header {
 }
+
+.filter-section {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center; 
+  justify-content: center;
+}
+
+.search-box {
+  order: 1;
+  flex: 3 1 0;
+}
+
+.city-filter {
+  order: 2;
+  flex: 1 1 0;
+}
+
 .logo {
   width: 180px;
   height: 80px;
@@ -28,8 +47,7 @@ form.link, form.button {
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing {
+.header {
   padding-right: 15px;
   padding-left: 15px;
 }

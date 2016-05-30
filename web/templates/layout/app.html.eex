@@ -11,6 +11,7 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Scheherazade&subset=arabic,latin' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://use.fontawesome.com/0ca9568223.js"></script>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
@@ -25,6 +26,8 @@
                   <ul class="dropdown-menu">
                     <li><a href="/admin/places"><%= gettext "Places" %></a></li>
                     <li><a href="/admin/categories"><%= gettext "Categories" %></a></li>
+                    <li><a href="/admin/users"><%= gettext "Users" %></a></li>
+                    <li><a href="/admin/cities"><%= gettext "Cities" %></a></li>
                   </ul>
               </li>
             <% end %>

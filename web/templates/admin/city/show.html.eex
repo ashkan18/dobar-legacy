@@ -1,0 +1,33 @@
+<h2>Show city</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @city.name %>
+  </li>
+
+  <li>
+    <strong>Lat:</strong>
+    <%= @city.lat %>
+  </li>
+
+  <li>
+    <strong>Lon:</strong>
+    <%= @city.lon %>
+  </li>
+
+  <li>
+    <strong>Area:</strong>
+    <%= @city.area %>
+  </li>
+
+  <li>
+    <strong>Enabaled:</strong>
+    <%= @city.enabaled %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: city_path(@conn, :edit, @city) %>
+<%= link "Back", to: city_path(@conn, :index) %>

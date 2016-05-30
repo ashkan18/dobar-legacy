@@ -1,0 +1,15 @@
+<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+    <%= if @conn.params["city_id"] do %>
+      <%= Enum.find(@cities, %{name: Gettext.gettext(Dobar.Gettext, "Select a city")}, fn(c) -> c.id == String.to_integer(@conn.params["city_id"]) end).name %>
+    <% else %>
+      <%= gettext "Select a city" %>
+    <% end %>
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <%= for city <- @cities do %>
+      <li><a href=<%= "/places?city_id=#{city.id}" %> > <%= Gettext.gettext(Dobar.Gettext, city.name) %> </a></li>
+    <% end %>
+  </ul>
+</div>

@@ -30,7 +30,7 @@ defmodule Dobar.Router do
     post "/authentication", AuthenticationController, :login
     resources "/register", Public.RegistrationController, only: [:new, :create]
 
-    resources "/place", Public.PlaceController, only: [:show, :index]
+    resources "/places", Public.PlaceController, only: [:show, :index]
     resources "/user_place_reviews", Public.UserPlaceReviewController, only: [:new, :create]
     resources "/place_image_users", Public.PlaceImageUserController, only: [:new, :create]
     
@@ -38,6 +38,7 @@ defmodule Dobar.Router do
       resources "/users", Admin.UserController
       resources "/places", Admin.PlaceController
       resources "/categories", Admin.CategoryController
+      resources "/cities", Admin.CityController
     end
   end
 

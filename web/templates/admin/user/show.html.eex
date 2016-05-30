@@ -13,8 +13,8 @@
   </li>
 
   <li>
-    <strong>Crypted password:</strong>
-    <%= @user.crypted_password %>
+    <strong>Is admin?</strong>
+    <%= @user.is_admin %>
   </li>
 
 </ul>
