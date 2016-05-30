@@ -31,9 +31,13 @@ form.link, form.button {
   flex: 3 1 0;
 }
 
+#search_term {
+  font-size: 24px;
+}
+
 .city-filter {
   order: 2;
-  flex: 1 1 0;
+  flex: 1 1 2;
 }
 
 .logo {
