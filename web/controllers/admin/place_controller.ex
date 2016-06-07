@@ -24,8 +24,9 @@ defmodule Dobar.Admin.PlaceController do
     changeset = Place.changeset(%Place{}, prepare_params(place_params))
     
     case Repo.insert(changeset) do
-      {:ok, _place} ->
+      {:ok, place} ->
         conn
+          |> upload_logo(place, place_params)
           |> put_flash(:info, "Place created successfully.")
           |> redirect(to: place_path(conn, :index))
       {:error, changeset} ->
@@ -51,6 +52,7 @@ defmodule Dobar.Admin.PlaceController do
     case Repo.update(changeset) do
       {:ok, place} ->
         conn
+        |> upload_logo(place, place_params)
         |> put_flash(:info, "Place updated successfully.")
         |> redirect(to: place_path(conn, :show, place))
       {:error, changeset} ->
@@ -72,7 +74,7 @@ defmodule Dobar.Admin.PlaceController do
 
   defp prepare_params(place_params) do
     
-    if place_params !== :empty && Map.has_key?(place_params, "lat_lon")do
+    if place_params !== :empty && Map.has_key?(place_params, "lat_lon") do
       {lat_lon, place_params} = Dict.pop(place_params, "lat_lon")
       [lat, lon] = String.split(lat_lon, ",")
       place_params = Dict.merge(place_params, %{"lat" => lat, "lon" => lon})
@@ -81,6 +83,25 @@ defmodule Dobar.Admin.PlaceController do
     categories = Dict.get(place_params, "categories_list")
                   |> Enum.map(fn c -> %{name: c} end)
     Dict.merge(place_params, %{"categories" => categories})
+  end
+  
+  defp upload_logo(conn, place, place_params) do
+    if Map.has_key?(place_params, "logo_image") do
+      user = Guardian.Plug.current_resource(conn)
+      %{"logo_image" => logo_image } = place_params
+      upload_token = Integer.to_string(:os.system_time(:seconds))
+      url = upload_photo(logo_image, %{place_id: place.id, user_id: user.id, upload_token: upload_token})
+      logo_update_changeset = Place.changeset(place, %{"logo_url" => url})
+      Repo.update(logo_update_changeset)
+    end
+  end
+
+  defp upload_photo(photo_file, place_image_user_changeset) do
+    case PlaceImage.store({photo_file, place_image_user_changeset}) do
+      {:ok, result} ->
+        PlaceImage.url({%{file_name: result}, place_image_user_changeset})
+      _ -> nil
+    end
   end
 
   defp load_categories(conn, _) do
