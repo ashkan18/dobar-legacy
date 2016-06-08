@@ -1,7 +1,8 @@
+require IEx
 defmodule Dobar.Admin.PlaceController do
   use Dobar.Web, :controller
 
-  alias Dobar.{Place, Category}
+  alias Dobar.{Place, Category, PlaceImage}
 
   plug Guardian.Plug.EnsureAuthenticated, %{ on_failure: { Dobar.AuthenticationController, :permission_denied } }
   plug Dobar.Plug.Auth
@@ -90,17 +91,22 @@ defmodule Dobar.Admin.PlaceController do
       user = Guardian.Plug.current_resource(conn)
       %{"logo_image" => logo_image } = place_params
       upload_token = Integer.to_string(:os.system_time(:seconds))
-      url = upload_photo(logo_image, %{place_id: place.id, user_id: user.id, upload_token: upload_token})
-      logo_update_changeset = Place.changeset(place, %{"logo_url" => url})
-      Repo.update(logo_update_changeset)
+      case upload_photo(logo_image, %{place_id: place.id, user_id: user.id, upload_token: upload_token}) do
+        {:ok, url} ->
+          logo_update_changeset = Place.changeset(place, %{"logo" => url})
+          Repo.update(logo_update_changeset)
+        {:error} ->
+          put_flash(conn, :info, "There was an error in uploading logo, Try again later.")
+      end
     end
+    conn
   end
 
   defp upload_photo(photo_file, place_image_user_changeset) do
     case PlaceImage.store({photo_file, place_image_user_changeset}) do
       {:ok, result} ->
-        PlaceImage.url({%{file_name: result}, place_image_user_changeset})
-      _ -> nil
+        {:ok, PlaceImage.url({%{file_name: result}, place_image_user_changeset})}
+      _ -> {:error}
     end
   end
 
