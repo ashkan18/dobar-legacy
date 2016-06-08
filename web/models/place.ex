@@ -34,6 +34,7 @@ defmodule Dobar.Place do
     field :instagram, :string
     field :facebook, :string
     field :twitter, :string
+    field :logo, :string
 
     has_many :user_place_reviews, UserPlaceReview
     has_many :user_reviews, through: [:user_place_reviews, :user]
@@ -46,7 +47,7 @@ defmodule Dobar.Place do
 
   @place_types ~w(restaurant cafe)
   @required_fields ~w(name type short_description geom address city state country categories phone working_hours)
-  @optional_fields ~w(description go nogo address2 delivery card wifi outdoor_seating takes_reservation good_for_groups weelchaire_accessible smoking parking instagram facebook twitter)
+  @optional_fields ~w(description go nogo address2 delivery card wifi outdoor_seating takes_reservation good_for_groups weelchaire_accessible smoking parking instagram facebook twitter logo)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
