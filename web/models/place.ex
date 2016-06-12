@@ -84,4 +84,9 @@ defmodule Dobar.Place do
       limit: ^size,
       offset: ^((page-1) * size)
   end
+
+  def by_category(query, category) do
+    from place in query,
+    where: fragment("? = ANY(array(select unnest(?)->>'name'))", ^category, place.categories)  
+  end
 end
