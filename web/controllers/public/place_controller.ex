@@ -47,14 +47,19 @@ defmodule Dobar.Public.PlaceController do
     end
   end
 
-  defp filter_categories(query, categories) do
-    query
+  defp filter_categories(query, params) do
+    if params["categories"] do
+      query 
+        |> Place.by_category(params["categories"])
+    else
+      query
+    end
   end
 
-  defp search_by_name(query, search_params) do
-    if search_params["term"] do
+  defp search_by_name(query, params) do
+    if params["term"] do
       query
-        |> Place.with_name(search_params["term"])
+        |> Place.with_name(params["term"])
     else
       query
     end
