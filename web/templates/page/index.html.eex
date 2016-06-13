@@ -1,5 +1,13 @@
-<div class="row marketing">
-  <div class="col-lg-6">
-    <%= link gettext("Places"), to: place_path(@conn, :index) %>
+<div class="home-page">
+  <div class="search-area">
+    <%= form_for @conn, "/places", [as: :search, method: :get, class: "inline-form"],  fn f -> %>
+      <div class="input-group">
+        <%= search_input f, :term, class: "form-control", placeholder: gettext "Search" %>
+        <%= hidden_input f, :city_id, value: @conn.params["city_id"] %>
+        <div class="input-group-btn">
+          <button class="btn btn-default" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
