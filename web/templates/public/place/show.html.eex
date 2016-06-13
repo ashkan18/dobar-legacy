@@ -52,11 +52,11 @@
 </div>
 <% end %>
 
-<div class="photo-library row well standard-margin">
-  <div class="row">
+<div class="photo-section">
+  <div class="photo-header">
     <img src="/images/icons/photos.png" class="icon pull-left">
   </div>
-  <div class="row">
+  <div class="photo-list">
     <%= for place_image_user <- @place.images do %>
       <div class="col-lg-3 col-md-6 col-xs-12 thumbnail">
         <img src=<%= Dobar.PlaceImage.url({place_image_user.url, place_image_user}, :thumb) %> >
@@ -64,7 +64,9 @@
       </div>
     <% end %>
   </div>
-  <%= link gettext("Upload"), to: place_image_user_path(@conn, :new, place_id: @place.id), class: "col-xs-12 btn btn-default"%>
+  <div class="photo-upload">
+    <%= link gettext("Upload"), to: place_image_user_path(@conn, :new, place_id: @place.id), class: "col-xs-12 btn btn-default"%>
+  </div>
 </div>
 
 <%= if @place.description do %>
@@ -77,7 +79,7 @@
 <% end %>
 
 <%= if @current_user && @current_user.is_admin do %>
-  <div class="admin row">
+  <div class="admin">
     <%= link "Edit", to: place_path(@conn, :edit, @place), class: "col-xs-12 btn btn-default" %>
   </div>
 <% end %>

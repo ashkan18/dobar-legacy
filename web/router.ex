@@ -24,7 +24,7 @@ defmodule Dobar.Router do
   scope "/", Dobar do
     pipe_through [:browser, :authentication] # Use the default browser stack
     
-    get "/", Public.PlaceController, :index
+    get "/", PageController, :index
     get "/login", AuthenticationController, :login_page
     get "/logout", AuthenticationController, :logout
     post "/authentication", AuthenticationController, :login
