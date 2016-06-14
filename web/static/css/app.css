@@ -188,7 +188,7 @@ html, body
 }
 
 .photo-section {
-  display: flex-inline;
+  display: flex;
   flex-direction: column;
 }
 
