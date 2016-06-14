@@ -188,20 +188,15 @@ html, body
 }
 
 .photo-section {
-  display: flex;
-  flex-direction: column;
 }
 
 .photo-header {
-  order: 1;
 }
 
 .photo-header > img {
-  margin-right: 10px;
 }
 
 .photo-list {
-  order: 2;
   flex: 1;
   display: flex;
   flex-flow: row wrap;
@@ -213,7 +208,6 @@ html, body
 }
 
 .photo-upload {
-  order: 3;
 }
 
 .carousel {

@@ -53,7 +53,7 @@
 <% end %>
 
 <div class="photo-section" style="order: 9;">
-  <div class="photo-header">
+  <div class="photo-header col-xs-12">
     <img src="/images/icons/photos.png" class="icon pull-left">
   </div>
   <div class="photo-list">
@@ -79,7 +79,7 @@
 <% end %>
 
 <%= if @current_user && @current_user.is_admin do %>
-  <div class="admin">
+  <div class="admin" style="order: 12;">
     <%= link "Edit", to: place_path(@conn, :edit, @place), class: "col-xs-12 btn btn-default" %>
   </div>
 <% end %>
