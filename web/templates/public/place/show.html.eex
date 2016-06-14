@@ -52,9 +52,9 @@
 </div>
 <% end %>
 
-<div class="photo-section" style="order: 9;">
-  <div class="photo-header col-xs-12">
-    <img src="/images/icons/photos.png" class="icon pull-left">
+<div class="photo-section standard-margin" style="order: 9;">
+  <div class="photo-header">
+    <img src="/images/icons/photos.png" class="icon">
   </div>
   <div class="photo-list">
     <%= for place_image_user <- @place.images do %>
