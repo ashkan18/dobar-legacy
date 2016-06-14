@@ -200,7 +200,8 @@ html, body
   order: 2;
   flex: 1;
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
+  justify-content: space-around;
 }
 
 .photo-list-items {
