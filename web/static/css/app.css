@@ -196,12 +196,16 @@ html, body
   order: 1;
 }
 
+.photo-header > img {
+  margin-right: 10px;
+}
+
 .photo-list {
   order: 2;
   flex: 1;
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .photo-list-items {

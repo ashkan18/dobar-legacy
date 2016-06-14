@@ -58,7 +58,7 @@
   </div>
   <div class="photo-list">
     <%= for place_image_user <- @place.images do %>
-      <div class="col-lg-3 col-md-6 col-xs-12 thumbnail">
+      <div class="thumbnail">
         <img src=<%= Dobar.PlaceImage.url({place_image_user.url, place_image_user}, :thumb) %> >
         <div class = "caption text-center"><%= place_image_user.notes %></div>
       </div>
