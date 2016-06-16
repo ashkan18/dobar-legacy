@@ -12,6 +12,7 @@
     <link href='https://fonts.googleapis.com/css?family=Scheherazade&subset=arabic,latin' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://use.fontawesome.com/0ca9568223.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCOj7b6tahJ1qR6zU8XL5xH6KcH5tyMwU&libraries=places"></script>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
