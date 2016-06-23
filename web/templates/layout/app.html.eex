@@ -12,15 +12,15 @@
     <link href='https://fonts.googleapis.com/css?family=Scheherazade&subset=arabic,latin' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://use.fontawesome.com/0ca9568223.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCOj7b6tahJ1qR6zU8XL5xH6KcH5tyMwU&libraries=places"></script>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
   <body>
-    <div class="root-container">
+    <div class="container-fluid fill">
       <header class="header">
         <%= render "header.html",  current_user: @current_user %>
       </header>
-
       <main class="main-area">
         <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
         <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
@@ -29,7 +29,7 @@
         </div>
       </main>
       <div class="footer text-center">
-        Footer
+        Dobar
       </div>
     </div> <!-- /container -->
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
