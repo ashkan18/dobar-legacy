@@ -17,11 +17,10 @@
   </head>
 
   <body>
-    <div class="root-container">
+    <div class="container-fluid fill">
       <header class="header">
         <%= render "header.html",  current_user: @current_user %>
       </header>
-
       <main class="main-area">
         <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
         <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
