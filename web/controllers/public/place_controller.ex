@@ -9,6 +9,7 @@ defmodule Dobar.Public.PlaceController do
   def index(conn, params) do
     places = Place
               |> filter_city(params["city_id"])
+              |> filter_by_location(params["search"])
               |> filter_categories(params["categories"])
               |> search_by_name(params["search"])
               |> Repo.all
@@ -62,6 +63,12 @@ defmodule Dobar.Public.PlaceController do
         |> Place.with_name(params["term"])
     else
       query
+    end
+  end
+
+  defp filter_by_location(query, params) do
+    if params["lat"] && params["lon"] do
+      query |> Place.within_distance(params["lat"], params["lon"])
     end
   end
 end

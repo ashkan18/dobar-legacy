@@ -1,3 +1,7 @@
 let input = $('#search_term')
 
-autocomplete = new google.maps.places.Autocomplete(input, {});
+let options = {
+  types: ['geocode']
+}
+
+autocomplete = new google.maps.places.Autocomplete(input, options);
