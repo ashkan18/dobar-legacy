@@ -2,7 +2,7 @@ import $ from "jquery"
 
 let locationSearch = {
   bindSearch: function() {
-    let input = $('#search_term')[0]
+    let input = $('#search_location_input')[0]
     let options = {
       types: ['geocode']
     }

@@ -14,7 +14,6 @@ defmodule Dobar.Public.PlaceController do
               |> search_by_name(params["search"])
               |> Repo.all
               |> Repo.preload([:images, :user_reviews])
-
     conn
       |> assign(:places, places)
       |> render("index.html")
