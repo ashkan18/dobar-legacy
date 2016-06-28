@@ -1,11 +1,4 @@
-<div class="filter-section standard-margin">
-  <div class="search-box">
-    <%= render "search_form.html", conn: @conn %>
-  </div>
-  <div class="city-filter">
-    <% #<%= render "cities_dropdown.html", cities: @cities, conn: @conn %>
-  </div>
-</div>
+<%= render "search_form.html", conn: @conn %>
 
 <div class="list-section">
   <%= for place <- @places do %>

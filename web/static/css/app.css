@@ -1,19 +1,21 @@
 /* Space out content a bit */
-html {
-  height: 100%;
-}
-body {
-  min-height: 100%;
-}
+html,body{height:100%;}
+
 body, form, ul, table {
   margin-top: 20px;
   margin-bottom: 20px;
   font-family: 'Roboto Condensed', 'Scheherazade';
 }
 
-.root-container {
-  min-height: 100%;
+.container-fluid {
+  height:100%;
 }
+
+.standard-margin {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 /* Phoenix flash messages */
 .alert:empty { display: none; }
 
@@ -23,20 +25,37 @@ form.link, form.button {
 }
 
 /* Custom page header */
+.logo {
+  width: 110px;
+  height: 50px;
+  display: inline-block;
+  margin-bottom: 1em;
+  background-image: url("/images/logo.png");
+  background-size: 100px 45px;
+  border: solid 4px #000000;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
 .header {
+  padding-right: 15px;
+  padding-left: 15px;
+  border-bottom: 1px solid #888888;
 }
 
-.filter-section {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  align-items: center; 
-  justify-content: center;
+/* main area */
+.main-area {
+  min-height: 80%;
+  background-color: #fafafa;
+  padding: 20px;
 }
 
-.search-box {
-  order: 1;
-  flex: 3 1 0;
+.main-content {
+  height: 100%;
+}
+
+.search-area {
+  width: 400px;
+  margin: auto;
 }
 
 #search_term {
@@ -48,27 +67,8 @@ form.link, form.button {
   flex: 1 1 2;
 }
 
-.logo {
-  width: 180px;
-  height: 80px;
-  display: inline-block;
-  margin-bottom: 1em;
-  background-image: url("/images/logo.png");
-  background-size: 175px 75px;
-  border: solid 4px #000000;
-}
-
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header {
-  padding-right: 15px;
-  padding-left: 15px;
-}
 
 
-.standard-margin {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
 
 .icon {
   width: 85px;
@@ -96,13 +96,5 @@ form.link, form.button {
   .marketing {
     padding-right: 0;
     padding-left: 0;
-  }
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30px;
-  }
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
   }
 }
