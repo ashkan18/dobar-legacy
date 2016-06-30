@@ -9,6 +9,8 @@ body, form, ul, table {
 
 .container-fluid {
   height:100%;
+  padding-right: 0px;
+  padding-left: 0px;
 }
 
 .standard-margin {
@@ -42,6 +44,10 @@ form.link, form.button {
   border-bottom: 1px solid #888888;
 }
 
+.footer {
+  padding-top: 10px;
+}
+
 /* main area */
 .main-area {
   min-height: 80%;
@@ -49,12 +55,13 @@ form.link, form.button {
   padding: 20px;
 }
 
+
 .main-content {
   height: 100%;
 }
 
 .search-area {
-  width: 400px;
+  min-width: 50%;
   margin: auto;
 }
 
