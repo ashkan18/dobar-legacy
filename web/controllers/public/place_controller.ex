@@ -36,38 +36,19 @@ defmodule Dobar.Public.PlaceController do
     assign(conn, :cities, cities) 
   end
 
+  defp filter_city(query, nil), do: query
   defp filter_city(query, city_id) do
-    if city_id do
-      city = Repo.get!(City, city_id)
-      
-      query 
-        |> Place.within_distance(city.lat, city.lon, city.area)
-    else
-      query
-    end
+    city = Repo.get!(City, city_id)
+    query 
+      |> Place.within_distance(city.lat, city.lon, city.area)
   end
 
-  defp filter_categories(query, params) do
-    if params["categories"] do
-      query 
-        |> Place.by_category(params["categories"])
-    else
-      query
-    end
-  end
+  defp filter_categories(query, %{"categories" => categories}), do: Place.by_category(query, categories)
+  defp filter_categories(query, _), do: query
 
-  defp search_by_name(query, params) do
-    if params["term"] do
-      query
-        |> Place.with_name(params["term"])
-    else
-      query
-    end
-  end
+  defp search_by_name(query, %{"term" => term}), do: Place.with_name(query, term)
+  defp search_by_name(query, _), do: query
 
-  defp filter_by_location(query, params) do
-    if params["lat"] && params["lon"] do
-      query |> Place.within_distance(params["lat"], params["lon"])
-    end
-  end
+  defp filter_by_location(query, %{"lat" => lat, "lon" => lon}), do: Place.within_distance(query, lat, lon)
+  defp filter_by_location(query, _), do: query
 end
