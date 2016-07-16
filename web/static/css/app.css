@@ -34,18 +34,22 @@ form.link, form.button {
   margin-bottom: 1em;
   background-image: url("/images/logo.png");
   background-size: 100px 45px;
-  border: solid 4px #000000;
+  border: solid 3px #000000;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header {
+  height: 10%;
   padding-right: 15px;
   padding-left: 15px;
   border-bottom: 1px solid #888888;
 }
 
 .footer {
+  border-top: solid 1px #777777;
   padding-top: 10px;
+  background-color: #fbfbfb;
+  height: 10%;
 }
 
 /* main area */
@@ -74,8 +78,20 @@ form.link, form.button {
   flex: 1 1 2;
 }
 
-
-
+/* list section */
+.list-section {
+  display: flex;
+  -webkit-display: flex;
+  flex-direction: row;
+  -webkit-flex-direction: row;
+  justify-content: space-around;
+  -webkit-justify-content: space-around;
+  flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+}
+.list-section.list-item {
+  flex-grow: 1;
+}
 
 .icon {
   width: 85px;

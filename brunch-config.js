@@ -4,10 +4,10 @@ exports.config = {
     javascripts: {
       joinTo: "js/app.js",
       order: {
-        before: [
-          "web/static/vendor/jquery/dist/jquery.min.js",
-          "web/static/vendor/bootstrap/dist/js/bootstrap.js"
-        ]
+        // before: [
+        //   "web/static/vendor/jquery/dist/jquery.min.js",
+        //   "web/static/vendor/bootstrap/dist/js/bootstrap.js"
+        // ]
       }
       // To use a separate vendor.js bundle, specify two files path
       // https://github.com/brunch/brunch/blob/stable/docs/config.md#files
@@ -38,10 +38,10 @@ exports.config = {
     // By default, we set this to "/web/static/assets". Files in this directory
     // will be copied to `paths.public`, which is "priv/static" by default.
     assets: /^(web\/static\/assets)/,
-    ignored: [
-      /^(web\/static\/vendor\/bootstrap\/)(?!.*min.(js|css)$)/,
-      /^(web\/static\/vendor\/jquery\/)(?!.*min.js)/
-    ]
+    // ignored: [
+    //   /^(web\/static\/vendor\/bootstrap\/)(?!.*min.(js|css)$)/,
+    //   /^(web\/static\/vendor\/jquery\/)(?!.*min.js)/
+    // ]
   },
 
   // Phoenix paths configuration
@@ -74,6 +74,6 @@ exports.config = {
     enabled: true,
     // Whitelist the npm deps to be pulled in as front-end assets.
     // All other deps in package.json will be excluded from the bundle.
-    whitelist: ["jquery", "phoenix", "phoenix_html"]
+    whitelist: ["jquery", "phoenix", "phoenix_html", "bootstrap"]
   }
 };

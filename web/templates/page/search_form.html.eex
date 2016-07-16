@@ -1,5 +1,5 @@
 <div class="search-area">
-  <%= form_for @conn, "/places", [as: :search, method: :get, class: "inline-form"],  fn f -> %>
+  <%= form_for @conn, "/places", [as: :search, method: :get, class: "inline-form", id: "location-search-form"],  fn f -> %>
     <div class="input-group">
       <%= search_input f, :location_input, class: "form-control", placeholder: gettext "Search" %>
       <%= hidden_input f, :city_id, value: @conn.params["city_id"] %>

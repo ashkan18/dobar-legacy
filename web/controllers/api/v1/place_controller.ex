@@ -1,4 +1,3 @@
-import IEx
 defmodule Dobar.Api.V1.PlaceController do
   use Dobar.Web, :controller
   alias Dobar.Place

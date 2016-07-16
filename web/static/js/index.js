@@ -14,6 +14,7 @@ let locationSearch = {
       }
       $('#search_lat').val(place.geometry.location.lat())
       $('#search_lon').val(place.geometry.location.lng())
+      $('#location-search-form').submit()
     })
   }
 }
