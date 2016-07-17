@@ -18,7 +18,8 @@ defmodule Dobar.AuthenticationController do
           |> redirect(to: "/")
       :error ->
         conn
-          |> render("login.html", changeset: %User{email: login_params[:email], password: '' })
+          |> put_flash(:error, "Username and password didn't match :(")
+          |> redirect(to: "/login")
     end
   end
 
@@ -30,7 +31,7 @@ defmodule Dobar.AuthenticationController do
 
   def permission_denied(conn, _params) do
     conn
-      |> put_flash(:error, "Please sign in.")
+      |> put_flash(:error, "Please log in first.")
       |> redirect(to: "/")
       |> halt
   end

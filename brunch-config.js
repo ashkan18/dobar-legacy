@@ -3,12 +3,6 @@ exports.config = {
   files: {
     javascripts: {
       joinTo: "js/app.js",
-      order: {
-        // before: [
-        //   "web/static/vendor/jquery/dist/jquery.min.js",
-        //   "web/static/vendor/bootstrap/dist/js/bootstrap.js"
-        // ]
-      }
       // To use a separate vendor.js bundle, specify two files path
       // https://github.com/brunch/brunch/blob/stable/docs/config.md#files
       // joinTo: {
@@ -18,15 +12,20 @@ exports.config = {
       //
       // To change the order of concatenation of files, explicitly mention here
       // https://github.com/brunch/brunch/tree/master/docs#concatenation
-      // order: {
-      //   before: [
-      //     "web/static/vendor/js/jquery-2.1.1.js",
-      //     "web/static/vendor/js/bootstrap.min.js"
-      //   ]
-      // }
+      order: {
+        before: [
+          "web/static/vendor/js/jquery.min.js",
+          "web/static/vendor/js/bootstrap.min.js"
+        ]
+      }
     },
     stylesheets: {
-      joinTo: "css/app.css"
+      joinTo: "css/app.css",
+      order: {
+        before: [
+          "web/static/vendor/js/bootstrap.min.css"
+        ]
+      }
     },
     templates: {
       joinTo: "js/app.js"
