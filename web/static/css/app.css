@@ -28,6 +28,28 @@ form.link, form.button {
   display: inline;
 }
 
+.text-input {
+  width: 100%;
+  border: 2px solid #aaaaaa;
+  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.lg-input {
+  height: 46px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+}
+
+.no-radius {
+  border-radius: 0 !important;
+}
+
+.no-right-border {
+  border-right: 0px;
+}
 /* Custom page header */
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -78,6 +100,9 @@ form.link, form.button {
   min-width: 80%;
   margin: auto;
 }
+.btn-default {
+  border: 2px solid orange  ;
+}
 
 #location-search-form{
   display: flex;
@@ -116,6 +141,10 @@ form.link, form.button {
 
 .clickable {
   cursor: pointer;
+}
+
+.place-item{
+  border: 2px solid orange;
 }
 
 /* Customize container */

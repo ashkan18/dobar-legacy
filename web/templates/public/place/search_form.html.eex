@@ -1,10 +1,10 @@
 <div class="search-area">
-  <%= form_for @conn, "/places", [as: :search, method: :get, class: "form", id: "location-search-form"],  fn f -> %>
-      <%= search_input f, :location_input, class: "form-control input-lg", placeholder: gettext "Where?!", autocomplete: "off", spellcheck: "off" %>
-      <%= search_input f, :term, class: "form-control input-lg", placeholder: gettext "Whaaat?!" %>
+  <%= form_for @conn, "/places", [as: :search, method: :get, id: "location-search-form"],  fn f -> %>
+      <%= search_input f, :location_input, class: "text-input lg-input", placeholder: gettext "Where?!", autocomplete: "off", spellcheck: "off", autofocus: "autofocus"  %>
+      <%= search_input f, :term, class: "text-input lg-input", placeholder: gettext "Whaaat?!" %>
       <%= hidden_input f, :city_id, value: @conn.params["city_id"] %>
       <%= hidden_input f, :lat %>
       <%= hidden_input f, :lon %>
-      <button class="btn btn-default" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+      <button class="btn btn-default no-radius" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
   <% end %>
 </div>

@@ -1,4 +1,4 @@
-<a href=<%= place_path(@conn, :show, @place) %> class="thumbnail">
+<a href=<%= place_path(@conn, :show, @place) %> class="thumbnail no-radius place-item">
   <%= if length(@place.images) > 0 do %>
     <img src=<%= Dobar.PlaceImage.url({List.first(@place.images).url, List.first(@place.images)}, :thumb) %> >
   <% end %>
