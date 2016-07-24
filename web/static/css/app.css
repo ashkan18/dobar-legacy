@@ -54,7 +54,7 @@ form.link, form.button {
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header {
-  height: 10%;
+  height: 10vh;
   padding-right: 15px;
   padding-left: 15px;
   border-bottom: 1px solid #888888;
@@ -70,6 +70,7 @@ form.link, form.button {
   display: inline-block;
   margin-bottom: 1em;
   margin-top: 5px;
+  margin-bottom: 5px;
   background-image: url("/images/logo.png");
   background-size: 100px 45px;
   border: solid 3px white;
