@@ -73,16 +73,22 @@ defmodule Dobar.Place do
     from place in query, where: st_dwithin(place.geom, ^point, ^distance)
   end
 
-  def with_name(query, search_term) do
-    from place in query,
-    where: fragment("? % ?", place.name, ^search_term),
-    order_by: fragment("similarity(?, ?) DESC", place.name, ^search_term)
-  end
-
   def paginate(query, page, size) do
     from query,
       limit: ^size,
       offset: ^((page-1) * size)
+  end
+
+  def by_term(query, search_term) do
+    from place in query,
+    where: fragment("? % ? OR ? = ANY(array(select unnest(?)->>'name'))", place.name, ^search_term, ^search_term, place.categories),
+    order_by: fragment("similarity(?, ?) DESC", place.name, ^search_term)
+  end
+
+  def with_name(query, search_term) do
+    from place in query,
+    where: fragment("? % ?", place.name, ^search_term),
+    order_by: fragment("similarity(?, ?) DESC", place.name, ^search_term)
   end
 
   def by_category(query, category) do

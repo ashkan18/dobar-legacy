@@ -27,13 +27,6 @@ defmodule Dobar.Public.PlaceController do
       |> render("show.html")
   end
 
-  defp load_cities(conn, _) do
-    cities = City
-              |> City.alphabetical
-              |> Repo.all
-    assign(conn, :cities, cities) 
-  end
-
   defp filter_city(query, nil), do: query
   defp filter_city(query, city_id) do
     city = Repo.get!(City, city_id)
@@ -44,7 +37,7 @@ defmodule Dobar.Public.PlaceController do
   defp filter_categories(query, %{"categories" => categories}), do: Place.by_category(query, categories)
   defp filter_categories(query, _), do: query
 
-  defp search_by_name(query, %{"term" => term}) when term != "", do: Place.with_name(query, term)
+  defp search_by_name(query, %{"term" => term}) when term != "", do: Place.by_term(query, term)
   defp search_by_name(query, _), do: query
 
   defp filter_by_location(query, %{"lat" => lat, "lon" => lon}), do: Place.within_distance(query, lat, lon)
