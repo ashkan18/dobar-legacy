@@ -1,16 +1,18 @@
 /* Space out content a bit */
-html,body{height:100%;}
+html,body{
+  height:100%;
+  background-color: black;
+}
 
 body, form, ul, table {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  font-family: 'Roboto Condensed', 'Scheherazade';
+  font-family: 'Roboto Condensed', 'Harmattan', 'Scheherazade';
 }
 
 .container-fluid {
   height:100%;
   padding-right: 0px;
   padding-left: 0px;
+  margin-top: 10px;
 }
 
 .standard-margin {
@@ -27,15 +29,6 @@ form.link, form.button {
 }
 
 /* Custom page header */
-.logo {
-  width: 110px;
-  height: 50px;
-  display: inline-block;
-  margin-bottom: 1em;
-  background-image: url("/images/logo.png");
-  background-size: 100px 45px;
-  border: solid 3px #000000;
-}
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header {
@@ -43,30 +36,52 @@ form.link, form.button {
   padding-right: 15px;
   padding-left: 15px;
   border-bottom: 1px solid #888888;
+  background-color: black;
+}
+
+.header a{
+  color: white;
+}
+.logo {
+  width: 110px;
+  height: 50px;
+  display: inline-block;
+  margin-bottom: 1em;
+  margin-top: 5px;
+  background-image: url("/images/logo.png");
+  background-size: 100px 45px;
+  border: solid 3px white;
 }
 
 .footer {
   border-top: solid 1px #777777;
   padding-top: 10px;
-  background-color: #fbfbfb;
+  background-color: black;
   height: 10%;
+  color: white;
 }
 
 /* main area */
 .main-area {
-  min-height: 80%;
-  background-color: #fafafa;
-  padding: 20px;
+  min-height: 80vh;
+  background-color: white;
+  padding: 10px;
 }
 
 
 .main-content {
-  height: 100%;
+  
 }
 
+
 .search-area {
-  min-width: 50%;
+  min-width: 80%;
   margin: auto;
+}
+
+#location-search-form{
+  display: flex;
+  -webkit-display: flex;
 }
 
 #search_term {
@@ -88,6 +103,7 @@ form.link, form.button {
   -webkit-justify-content: space-around;
   flex-wrap: wrap;
   -webkit-flex-wrap: wrap;
+  margin-top: 20px;
 }
 .list-section.list-item {
   flex-grow: 1;

@@ -4,8 +4,6 @@ defmodule Dobar.Public.PlaceController do
 
   alias Dobar.{Repo, Place, UserPlaceReview, City}
 
-  plug :load_cities when action in [:index]
-
   def index(conn, params) do
     places = Place
               |> filter_city(params["city_id"])
@@ -46,7 +44,7 @@ defmodule Dobar.Public.PlaceController do
   defp filter_categories(query, %{"categories" => categories}), do: Place.by_category(query, categories)
   defp filter_categories(query, _), do: query
 
-  defp search_by_name(query, %{"term" => term}), do: Place.with_name(query, term)
+  defp search_by_name(query, %{"term" => term}) when term != "", do: Place.with_name(query, term)
   defp search_by_name(query, _), do: query
 
   defp filter_by_location(query, %{"lat" => lat, "lon" => lon}), do: Place.within_distance(query, lat, lon)
