@@ -81,8 +81,8 @@ defmodule Dobar.Place do
 
   def by_term(query, search_term) do
     from place in query,
-    where: fragment("? % ? OR ? = ANY(array(select unnest(?)->>'name'))", place.name, ^search_term, ^search_term, place.categories),
-    order_by: fragment("similarity(?, ?) DESC", place.name, ^search_term)
+    where: fragment("LOWER(?) % LOWER(?) OR LOWER(?) = ANY(array(select LOWER(unnest(?)->>'name')))", place.name, ^search_term, ^search_term, place.categories),
+    order_by: fragment("similarity(LOWER(?), LOWER(?)) DESC", place.name, ^search_term)
   end
 
   def with_name(query, search_term) do
