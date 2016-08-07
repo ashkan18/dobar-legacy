@@ -1,3 +1,12 @@
 <div class="home-page">
   <%= render "search_form.html", conn: @conn %>
+  <div class="tagline">
+    <h2>Simply, find the place to go!</h2>
+    <div class="description">
+      <h3>
+      <p>Dobar means <i> second time </i>. </p>
+      Simply decide to go to a place or not based on the response of other people's to:<br>
+      <strong>Would you go to this place again?</strong></h3>
+    </div>
+  </div>
 </div>

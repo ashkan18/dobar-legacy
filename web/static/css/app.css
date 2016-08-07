@@ -7,6 +7,11 @@ html,body{
 body, form, ul, table {
   font-family: 'Roboto Condensed', 'Harmattan', 'Scheherazade';
 }
+* {
+  -webkit-border-radius: 0 !important;
+     -moz-border-radius: 0 !important;
+          border-radius: 0 !important;
+}
 
 .container-fluid {
   height:100%;
@@ -111,12 +116,18 @@ form.link, form.button {
 }
 
 #search_term {
-  font-size: 24px;
 }
 
 .city-filter {
   order: 2;
   flex: 1 1 2;
+}
+
+.tagline {
+  text-align: center;
+}
+.tagline h2 {
+  color: orange;
 }
 
 /* list section */
