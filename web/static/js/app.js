@@ -19,7 +19,19 @@ import "phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
-import locationSearch from "./index"
 
+import loadView from './view_loader';
 
-locationSearch.bindSearch()
+function handleDOMContentLoaded() {
+  // Get the current view name
+  const viewName = document.getElementsByTagName('body')[0].dataset.jsViewName;
+
+  // Load view class and mount it
+  const ViewClass = loadView(viewName);
+  const view = new ViewClass();
+  view.mount();
+
+  window.currentView = view;
+}
+
+window.addEventListener('DOMContentLoaded', handleDOMContentLoaded, false);

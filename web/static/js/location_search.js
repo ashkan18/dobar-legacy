@@ -1,8 +1,8 @@
 import $ from "jquery"
 
-let locationSearch = {
-  bindSearch: function() {
-    let input = $('#search_location_input')[0]
+export default class LocationAutoComplete {
+  bindSearch(element_id, form) {
+    let input = $('#' + element_id)[0]
     let options = {
       types: ['geocode']
     }
@@ -18,5 +18,3 @@ let locationSearch = {
     })
   }
 }
-
-export default locationSearch
