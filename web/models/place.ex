@@ -68,9 +68,13 @@ defmodule Dobar.Place do
     |> cast_embed(:categories)
   end
 
-  def within_distance(query, lat, lon, distance \\ 1) do
+  @doc """
+  Gets places withing distance of a specific location with default of 10km
+  4th param is in meters
+  """
+  def within_distance(query, lat, lon, distance \\ 10000) do
     point = %Geo.Point{ coordinates: {lat, lon}, srid: 4326}
-    from place in query, where: st_dwithin(place.geom, ^point, ^distance)
+    from place in query, where: fragment("ST_DWithin(?::geography, ?::geography, ?)", place.geom, ^point, ^distance)
   end
 
   def paginate(query, page, size) do

@@ -38,7 +38,7 @@ defmodule Dobar.Mixfile do
      {:gettext, "~> 0.9"},
      {:guardian, "~>0.6.0"},
      {:comeonin, "~> 2.0"},
-     {:geo, "~> 1.0"},
+     {:geo, "~> 1.1"},
      {:arc, "~> 0.5.2"},
      {:ex_aws, "~> 0.4.10"}, # Required if using Amazon S3
      {:httpoison, "~> 0.7"},
