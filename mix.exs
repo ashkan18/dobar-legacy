@@ -3,8 +3,8 @@ defmodule Dobar.Mixfile do
 
   def project do
     [app: :dobar,
-     version: "0.0.1",
-     elixir: "~> 1.0",
+     version: "0.0.2",
+     elixir: "~> 1.3",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
@@ -30,7 +30,7 @@ defmodule Dobar.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:phoenix, "~> 1.1.4"},
+    [{:phoenix, "~> 1.2.0"},
      {:postgrex, ">= 0.0.0"},
      {:phoenix_ecto, "~> 2.0"},
      {:phoenix_html, "~> 2.4"},
@@ -40,7 +40,7 @@ defmodule Dobar.Mixfile do
      {:comeonin, "~> 2.0"},
      {:geo, "~> 1.1"},
      {:arc, "~> 0.5.2"},
-     {:ex_aws, "~> 0.4.10"}, # Required if using Amazon S3
+     {:ex_aws, "~> 0.5"}, # Required if using Amazon S3
      {:httpoison, "~> 0.7"},
      {:poison, "~> 1.2"},
      {:cowboy, "~> 1.0"}]
