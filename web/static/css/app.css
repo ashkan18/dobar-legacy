@@ -155,6 +155,17 @@ form.link, form.button {
   cursor: pointer;
 }
 
+
+.photo-list {
+  display: flex;
+  -webkit-display: flex;
+  flex-direction: row;
+  -webkit-flex-direction: row;
+  flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+}
 .place-item{
   border: 2px solid orange;
 }
