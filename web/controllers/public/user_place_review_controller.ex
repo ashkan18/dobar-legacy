@@ -1,4 +1,3 @@
-require IEx
 defmodule Dobar.Public.UserPlaceReviewController do
   use Dobar.Web, :controller
 
@@ -15,7 +14,7 @@ defmodule Dobar.Public.UserPlaceReviewController do
     render(conn, "new.html", changeset: changeset)
   end
 
-  def create(conn, %{"go" => go, "place_id" => place_id}) do
+  def create(conn, %{ "user_place_review" => %{"go" => go, "place_id" => place_id}}) do
     user = Guardian.Plug.current_resource(conn)
     place = Repo.get!(Place, place_id)
     changeset = UserPlaceReview.changeset(%UserPlaceReview{}, %{user_id: user.id, place_id: place_id, go: go})
