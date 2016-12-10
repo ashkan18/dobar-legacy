@@ -38,7 +38,7 @@ config :guardian, Guardian,
       serializer: Dobar.GuardianSerializer
 
 config :arc,
-  bucket: System.get_env("S3_IMAGE_BUCKET") || "dobar_dev",
+  bucket: System.get_env("S3_IMAGE_BUCKET") || "dobar",
   virtual_host: true
 
 config :ex_aws,

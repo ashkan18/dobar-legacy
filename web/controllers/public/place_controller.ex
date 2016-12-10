@@ -1,4 +1,3 @@
-require IEx
 defmodule Dobar.Public.PlaceController do
   use Dobar.Web, :controller
 

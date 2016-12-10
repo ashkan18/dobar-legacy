@@ -35,6 +35,9 @@ defmodule Dobar.Place do
     field :facebook, :string
     field :twitter, :string
     field :logo, :string
+    field :neighborhood, :string
+    field :website, :string
+    field :price_range, :integer
 
     has_many :user_place_reviews, UserPlaceReview
     has_many :user_reviews, through: [:user_place_reviews, :user]
@@ -46,8 +49,8 @@ defmodule Dobar.Place do
   end
 
   @place_types ~w(restaurant cafe)
-  @required_fields ~w(name type short_description geom address city state country categories phone working_hours)
-  @optional_fields ~w(description go nogo address2 delivery card wifi outdoor_seating takes_reservation good_for_groups weelchaire_accessible smoking parking instagram facebook twitter logo)
+  @required_fields ~w(name type geom address city state country geom)
+  @optional_fields ~w(price_range short_description working_hours categories website neighborhood description go nogo address2 delivery card wifi outdoor_seating phone takes_reservation good_for_groups weelchaire_accessible smoking parking instagram facebook twitter logo)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -61,7 +64,6 @@ defmodule Dobar.Place do
       {lon, params } = Dict.pop(params, "lon")
       params = Dict.put_new(params, "geom", %Geo.Point{ coordinates: { lat, lon }, srid: 4326 })
     end
-
     model
     |> cast(params, @required_fields, @optional_fields)
     |> validate_inclusion(:type, @place_types)
