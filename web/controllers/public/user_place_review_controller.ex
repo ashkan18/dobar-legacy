@@ -28,11 +28,11 @@ defmodule Dobar.Public.UserPlaceReviewController do
           end
         Repo.update!(place_changeset)
         conn
-          |> put_flash(:info, "Opinion submitted successfully.")
+          |> put_flash(:info, "Thanks, your opinion submitted successfully.")
           |> redirect(to: place_path(conn, :show, place))
       {:error, _changeset} ->
         conn
-          |> put_flash(:error, "You already have submitted your opinion.")
+          |> put_flash(:error, "Sorry, You already have submitted your opinion.")
           |> redirect(to: place_path(conn, :show, place))
     end
   end
