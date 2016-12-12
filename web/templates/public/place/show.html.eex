@@ -28,17 +28,24 @@
   </div>
 </div>
 
-<div class="text-center standard-margin">
-  <a href=<%= "tel:#{@place.phone}" %> >
-    <img src="/images/icons/call.png" class="icon">
-    <h3 class="phone-number"><%= @place.phone %></h3>
-  </a>
+<div class="row text-center standard-margin">
+  <%= if @place.phone do %>
+    <a href=<%= "tel:#{@place.phone}" %> >
+      <img src="/images/icons/call.png" class="icon">
+      <h4 class="phone-number"><%= @place.phone %></h4>
+    </a>
+  <% end %>
+  <%= if @place.website do %>
+    <a href=<%= "tel:#{@place.website}" %> >
+      <h4 class="phone-number"><%= @place.website %></h4>
+    </a>
+  <% end %>
 </div>
 
 <div class="other-info text-center standard-margin">
   <%= for option <- ~w(delivery card wifi outdoor_seating parking takes_reservation good_for_groups weelchaire_accessible smoking) do %>
     <%= if Map.get(@place, String.to_atom(option)) do %>
-      <img src=<%= "/images/icons/#{option}.png" %> class="icon">
+      <img src=<%= "/images/icons/#{option}.png"  %> title=<%= "#{option}" %> class="icon">
     <% end %>
   <% end %>
 </div>
